@@ -1,0 +1,448 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  padding-top: var(--header-height);
+  overflow: hidden;
+}
+
+/* Sky background */
+.skyBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    175deg,
+    #C8E8F5 0%,
+    #D8EFF8 30%,
+    #EBF5FB 55%,
+    var(--color-stone-pale) 100%
+  );
+  z-index: 0;
+}
+
+.skyBg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255,255,255,0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 20% 60%, rgba(200,146,42,0.05) 0%, transparent 70%);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-32);
+}
+
+/* ─── Left: Content ─── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(255,255,255,0.85);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: var(--space-1) var(--space-4);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-stone);
+  width: fit-content;
+  backdrop-filter: blur(6px);
+}
+
+.badgeDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-grass);
+  animation: pulse-gold 2s ease-in-out infinite;
+}
+
+.headline {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  animation: fadeInUp 0.7s var(--ease-smooth) both;
+}
+
+.headlineAccent {
+  color: var(--color-gold);
+  display: block;
+}
+
+.subtext {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+  max-width: 440px;
+  animation: fadeInUp 0.7s 0.1s var(--ease-smooth) both;
+}
+
+.buttons {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  animation: fadeInUp 0.7s 0.2s var(--ease-smooth) both;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-8);
+  background: var(--color-gold);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius-full);
+  transition: background var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+  box-shadow: var(--shadow-gold);
+  animation: pulse-gold 3s ease-in-out infinite;
+}
+
+.btnPrimary:hover {
+  background: var(--color-gold-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(200,146,42,0.45);
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-8);
+  background: var(--color-white);
+  color: var(--color-ink);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btnSecondary:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Stats row */
+.stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  animation: fadeInUp 0.7s 0.3s var(--ease-smooth) both;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.statNum {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--color-ink);
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: var(--color-ink-soft);
+  font-weight: 500;
+}
+
+.statDivider {
+  width: 1px;
+  height: 32px;
+  background: var(--color-border);
+}
+
+/* ─── Right: Arch Visual ─── */
+.visual {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  animation: scaleIn 0.7s 0.2s var(--ease-smooth) both;
+}
+
+.arch {
+  position: relative;
+  width: 280px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 24px 48px rgba(30,28,24,0.18));
+}
+
+/* Columns */
+.column {
+  position: absolute;
+  bottom: 56px;
+  width: 44px;
+  height: 260px;
+  background: linear-gradient(
+    to right,
+    #C8922A 0%,
+    #E8B84B 35%,
+    #F0C85A 50%,
+    #E8B84B 65%,
+    #C8922A 100%
+  );
+  border-radius: 4px 4px 0 0;
+  z-index: 1;
+}
+
+.columnLeft  { left: 24px; }
+.columnRight { right: 24px; }
+
+/* Arch top */
+.archTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: linear-gradient(
+    to bottom,
+    #E8B84B,
+    #C8922A
+  );
+  border-radius: 140px 140px 0 0;
+  z-index: 2;
+  box-shadow: inset 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.archTop::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 6px;
+  right: 6px;
+  top: 6px;
+  border-radius: 130px 130px 0 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.12), transparent);
+}
+
+/* Arch window (sky view) */
+.archWindow {
+  position: absolute;
+  top: 12px;
+  left: 58px;
+  right: 58px;
+  bottom: 56px;
+  z-index: 3;
+  overflow: hidden;
+  border-radius: 110px 110px 0 0;
+}
+
+.archSky {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(175deg, #87CEEB 0%, #B8DFF0 60%, #D6EFF8 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Clouds */
+.cloud {
+  position: absolute;
+  background: rgba(255,255,255,0.85);
+  border-radius: 50px;
+}
+
+.cloud1 {
+  width: 54px;
+  height: 18px;
+  top: 24px;
+  left: 10px;
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+.cloud2 {
+  width: 36px;
+  height: 12px;
+  top: 44px;
+  right: 8px;
+  animation: floatSlow 7s ease-in-out infinite reverse;
+}
+
+/* Score pill */
+.scorePill {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.9);
+  border: 1.5px solid var(--color-gold-light);
+  border-radius: var(--radius-full);
+  padding: 3px 10px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: var(--color-stone);
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+/* Character */
+.character {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  font-size: 3rem;
+  animation: floatY 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+  z-index: 2;
+}
+
+/* Obstacles */
+.obstacle {
+  position: absolute;
+  left: 78%;
+  width: 22px;
+  background: linear-gradient(to right, #3A7A2E, #5aac49, #3A7A2E);
+  border-radius: 4px;
+}
+
+.obstacleTop {
+  top: 0;
+  height: 90px;
+}
+
+.obstacleBottom {
+  bottom: 0;
+  height: 70px;
+}
+
+/* Arch base */
+.archBase {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: linear-gradient(to bottom, #6B6B6B, #4A4A4A);
+  z-index: 1;
+}
+
+.grassStrip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: linear-gradient(to bottom, #5aac49, #3A7A2E);
+}
+
+/* Name plate */
+.namePlate {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-white);
+  border: 2px solid var(--color-gold-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-6);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  white-space: nowrap;
+  box-shadow: var(--shadow-md);
+  z-index: 5;
+}
+
+/* Flower accents */
+.flowerAccent {
+  position: absolute;
+  bottom: -10px;
+  font-size: 1.5rem;
+  z-index: 0;
+}
+
+.flowerLeft  { left: -10px; animation: floatSlow 4s ease-in-out infinite; }
+.flowerRight { right: -10px; animation: floatSlow 6s ease-in-out infinite reverse; }
+
+/* Wave divider */
+.waveDivider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  z-index: 2;
+}
+
+.waveDivider svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-20);
+    text-align: center;
+  }
+
+  .content {
+    align-items: center;
+  }
+
+  .subtext {
+    max-width: 520px;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .stats {
+    justify-content: center;
+  }
+
+  .visual {
+    order: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .headline {
+    font-size: 2.2rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    justify-content: center;
+  }
+}

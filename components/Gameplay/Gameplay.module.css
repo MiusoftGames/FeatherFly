@@ -1,0 +1,181 @@
+.section {
+  background: var(--color-off-white);
+  padding: var(--space-24) 0;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.tag {
+  display: inline-block;
+  background: var(--color-grass-pale);
+  color: var(--color-grass);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(74,140,63,0.2);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+}
+
+.subtitle {
+  max-width: 480px;
+  color: var(--color-ink-soft);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Cards grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+  margin-bottom: var(--space-16);
+}
+
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  position: relative;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transition: transform var(--transition-base);
+  transform-origin: left;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-gold-light);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.cardIcon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.cardNum {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-stone-light);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
+}
+
+.cardDesc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+}
+
+/* Tap demo */
+.tapDemo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.tapRipple {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(200, 146, 42, 0.08);
+  border: 2px solid rgba(200, 146, 42, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.tapRipple::before,
+.tapRipple::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(200, 146, 42, 0.15);
+  animation: pulse-gold 2s ease-out infinite;
+}
+
+.tapRipple::after {
+  inset: -18px;
+  animation-delay: 0.5s;
+}
+
+.tapRipple:hover {
+  transform: scale(1.08);
+}
+
+.tapCenter {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: var(--color-gold);
+  letter-spacing: 0.08em;
+}
+
+.tapHint {
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
