@@ -1,9 +1,9 @@
+import Image from 'next/image';
 import styles from './Hero.module.css';
 
 export default function Hero() {
   return (
     <section className={styles.hero} id="hero">
-      {/* Sky + stone texture background */}
       <div className={styles.skyBg} aria-hidden="true" />
 
       <div className={`container ${styles.inner}`}>
@@ -26,12 +26,8 @@ export default function Hero() {
           </p>
 
           <div className={styles.buttons}>
-            <a href="#" className={styles.btnPrimary}>
-              ▶&ensp;Play in Browser
-            </a>
-            <a href="#" className={styles.btnSecondary}>
-              ↓&ensp;Get on Android
-            </a>
+            <a href="#" className={styles.btnPrimary}>▶&ensp;Play in Browser</a>
+            <a href="#" className={styles.btnSecondary}>↓&ensp;Get on Android</a>
           </div>
 
           <div className={styles.stats}>
@@ -52,64 +48,17 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right: game mockup arch */}
-        <div className={styles.visual}>
-          <div className={styles.arch}>
-            {/* Arch columns */}
-            <div className={`${styles.column} ${styles.columnLeft}`} />
-            <div className={`${styles.column} ${styles.columnRight}`} />
-
-            {/* Arch frame top */}
-            <div className={styles.archTop} />
-
-            {/* Sky window */}
-            <div className={styles.archWindow}>
-              <div className={styles.archSky}>
-                {/* Floating clouds */}
-                <div className={`${styles.cloud} ${styles.cloud1}`} />
-                <div className={`${styles.cloud} ${styles.cloud2}`} />
-
-                {/* Score pill */}
-                <div className={styles.scorePill}>
-                  🏆 Score: 29
-                </div>
-
-                {/* Character Kukula */}
-                <div className={styles.character} aria-label="Kukula the rooster">
-                  🐓
-                </div>
-
-                {/* Obstacles (pipes) */}
-                <div className={`${styles.obstacle} ${styles.obstacleTop}`} />
-                <div className={`${styles.obstacle} ${styles.obstacleBottom}`} />
-              </div>
-            </div>
-
-            {/* Arch base */}
-            <div className={styles.archBase}>
-              <div className={styles.grassStrip} />
-            </div>
-
-            {/* Name plate */}
-            <div className={styles.namePlate}>
-              ◀ Kukula ▶
-            </div>
-          </div>
-
-          {/* Floating flowers */}
-          <div className={`${styles.flowerAccent} ${styles.flowerLeft}`}>🌸</div>
-          <div className={`${styles.flowerAccent} ${styles.flowerRight}`}>🌸</div>
-        </div>
-      </div>
-
-      {/* Wave divider */}
-      <div className={styles.waveDivider} aria-hidden="true">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
-            fill="var(--color-off-white)"
+        {/* Right: image */}
+        <div className={styles.imageWrap}>
+          <Image
+            src="/images/hero.png"
+            alt="FeatherFly gameplay preview"
+            width={520}
+            height={560}
+            className={styles.heroImg}
+            priority
           />
-        </svg>
+        </div>
       </div>
     </section>
   );

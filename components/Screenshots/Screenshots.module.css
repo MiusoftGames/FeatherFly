@@ -1,6 +1,6 @@
 .section {
-  background: var(--color-stone-pale);
-  padding: var(--space-24) 0;
+  background: var(--color-white);
+  padding: var(--space-20) 0;
 }
 
 .header {
@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 
 .tag {
@@ -27,141 +27,99 @@
 
 .title {
   font-family: var(--font-heading);
-  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.03em;
   color: var(--color-ink);
 }
 
-.subtitle {
-  color: var(--color-ink-soft);
-  font-size: 1rem;
-  max-width: 360px;
+/* Rows */
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
 }
 
-/* Grid */
-.grid {
+.row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-5);
+  grid-template-columns: 3fr 2fr;
+  gap: var(--space-12);
+  align-items: center;
 }
 
-/* Card */
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  transition: transform var(--transition-base);
+.rowReverse {
+  grid-template-columns: 2fr 3fr;
 }
 
-.card:hover {
-  transform: translateY(-4px);
+.rowReverse .imgWrap {
+  order: 2;
 }
 
-/* Phone-style screen */
-.screen {
+.rowReverse .rowContent {
+  order: 1;
+}
+
+/* Image */
+.imgWrap {
   border-radius: var(--radius-xl);
-  aspect-ratio: 9/16;
   overflow: hidden;
-  border: 2px solid rgba(255,255,255,0.6);
-  box-shadow: var(--shadow-lg), inset 0 0 0 1px rgba(0,0,0,0.05);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
 }
 
-.phoneBrow {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 6px;
-  background: rgba(0,0,0,0.15);
-  border-radius: var(--radius-full);
+.img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
 }
 
-.screenContent {
+.imgWrap:hover .img {
+  transform: scale(1.02);
+}
+
+/* Row content */
+.rowContent {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: var(--space-3);
-  z-index: 1;
 }
 
-.screenEmoji {
-  font-size: 3.5rem;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-  animation: floatY 3s ease-in-out infinite;
-}
-
-.screenLabel {
+.rowNum {
   font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.9);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
-  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-stone-light);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  background: rgba(0,0,0,0.15);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-full);
-  backdrop-filter: blur(4px);
 }
 
-.scoreBar {
-  position: absolute;
-  top: 24px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-}
-
-.scoreBar span {
+.rowLabel {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.65rem;
-  color: rgba(255,255,255,0.9);
-  background: rgba(0,0,0,0.2);
-  padding: 3px 10px;
-  border-radius: var(--radius-full);
-  backdrop-filter: blur(4px);
-}
-
-/* Card info */
-.cardInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 0 var(--space-1);
-}
-
-.cardLabel {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.9rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   color: var(--color-ink);
 }
 
-.cardDesc {
-  font-size: 0.8rem;
+.rowDesc {
+  font-size: 0.95rem;
+  line-height: 1.7;
   color: var(--color-ink-soft);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 768px) {
+  .row,
+  .rowReverse {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
   }
-}
 
-@media (max-width: 540px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-3);
+  .rowReverse .imgWrap,
+  .rowReverse .rowContent {
+    order: unset;
   }
 }

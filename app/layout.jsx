@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 config.autoAddCss = false;
 
 export const metadata = {
-  title: 'FeatherFly — Fly. Learn. Explore Galle Fort.',
+  title: 'FeatherFly',
   description:
     'FeatherFly is a fun, educational flappy-style game set in Galle Fort, Sri Lanka. Tap to fly, avoid obstacles, collect puzzle pieces, and discover the history of a UNESCO World Heritage Site.',
   keywords: [

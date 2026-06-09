@@ -7,6 +7,7 @@ import Features from '@/components/Features/Features';
 import Screenshots from '@/components/Screenshots/Screenshots';
 import CTA from '@/components/CTA/CTA';
 import Footer from '@/components/Footer/Footer';
+import BackToTop from '@/components/BackToTop/BackToTop';
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <CTA />
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 }

@@ -1,41 +1,26 @@
+import Image from 'next/image';
 import styles from './Screenshots.module.css';
 
-const screenshots = [
+const shots = [
   {
     label: 'Main Menu',
-    emoji: '🏛️',
-    bg: 'linear-gradient(145deg, #87CEEB 0%, #B8DFF0 100%)',
-    desc: 'Golden arch menu with character preview',
+    desc: 'The golden arch greets you on launch — pick your character and dive straight in.',
+    img: '/images/screen-menu.png',
   },
   {
-    label: 'Gameplay',
-    emoji: '🐓',
-    bg: 'linear-gradient(145deg, #5aac49 0%, #3A7A2E 100%)',
-    desc: 'Dodge fort walls at full speed',
+    label: 'Mid-Flight Gameplay',
+    desc: "Tight gaps, smooth controls. Every pixel of Galle Fort's walls is an obstacle waiting.",
+    img: '/images/screen-gameplay.png',
   },
   {
-    label: 'Quiz Screen',
-    emoji: '📚',
-    bg: 'linear-gradient(145deg, #E8B84B 0%, #C8922A 100%)',
-    desc: 'Test your knowledge on crash',
+    label: 'Quiz on Crash',
+    desc: 'Crash? No problem. Answer a quick question about Galle Fort and earn bonus points.',
+    img: '/images/screen-quiz.png',
   },
   {
     label: 'Puzzle Unlock',
-    emoji: '🧩',
-    bg: 'linear-gradient(145deg, #D6EFF8 0%, #87CEEB 100%)',
-    desc: 'Piece together Galle Fort artwork',
-  },
-  {
-    label: 'Fort Journal',
-    emoji: '📖',
-    bg: 'linear-gradient(145deg, #F4F1EC 0%, #C8C0B0 100%)',
-    desc: 'Your collected facts and history',
-  },
-  {
-    label: 'Leaderboard',
-    emoji: '🏆',
-    bg: 'linear-gradient(145deg, #FDF6E3 0%, #E8B84B 100%)',
-    desc: 'Compete with other explorers',
+    desc: 'Collect pieces through every run and piece together stunning scenes of the fort.',
+    img: '/images/screen-puzzle.png',
   },
 ];
 
@@ -46,29 +31,27 @@ export default function Screenshots() {
         <div className={styles.header}>
           <span className={styles.tag}>Screenshots</span>
           <h2 className={styles.title}>A Peek Inside the Fort</h2>
-          <p className={styles.subtitle}>
-            Stylized 2D visuals that bring Galle Fort's history to life.
-          </p>
         </div>
 
-        <div className={styles.grid}>
-          {screenshots.map((s, i) => (
-            <div key={i} className={styles.card}>
-              <div className={styles.screen} style={{ background: s.bg }}>
-                {/* Mock phone frame */}
-                <div className={styles.phoneBrow} />
-                <div className={styles.screenContent}>
-                  <div className={styles.screenEmoji}>{s.emoji}</div>
-                  <div className={styles.screenLabel}>{s.label}</div>
-                </div>
-                {/* Mock score bar */}
-                <div className={styles.scoreBar}>
-                  <span>🏆 Score: {Math.floor(Math.random() * 80 + 10)}</span>
-                </div>
+        <div className={styles.rows}>
+          {shots.map((s, i) => (
+            <div
+              key={i}
+              className={`${styles.row} ${i % 2 === 1 ? styles.rowReverse : ''}`}
+            >
+              <div className={styles.imgWrap}>
+                <Image
+                  src={s.img}
+                  alt={s.label}
+                  width={540}
+                  height={380}
+                  className={styles.img}
+                />
               </div>
-              <div className={styles.cardInfo}>
-                <span className={styles.cardLabel}>{s.label}</span>
-                <span className={styles.cardDesc}>{s.desc}</span>
+              <div className={styles.rowContent}>
+                <span className={styles.rowNum}>0{i + 1}</span>
+                <h3 className={styles.rowLabel}>{s.label}</h3>
+                <p className={styles.rowDesc}>{s.desc}</p>
               </div>
             </div>
           ))}

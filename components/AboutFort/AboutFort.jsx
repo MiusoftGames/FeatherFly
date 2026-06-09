@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './AboutFort.module.css';
 
 const facts = [
@@ -11,14 +12,24 @@ export default function AboutFort() {
   return (
     <section className={styles.section} id="about-fort">
       <div className="container">
-
-        {/* Section label */}
         <div className={styles.layout}>
+
+          {/* Left: image */}
+          <div className={styles.imageWrap}>
+            <Image
+              src="/images/about-fort.png"
+              alt="Galle Fort, Sri Lanka"
+              width={520}
+              height={540}
+              className={styles.img}
+            />
+          </div>
+
+          {/* Right: content */}
           <div className={styles.content}>
             <span className={styles.tag}>The Setting</span>
             <h2 className={styles.title}>
-              A Fort Built<br />
-              by Empires,<br />
+              A Fort Built by Empires,{' '}
               <span className={styles.accent}>Loved by All.</span>
             </h2>
             <p className={styles.body}>
@@ -29,34 +40,10 @@ export default function AboutFort() {
             </p>
             <p className={styles.body}>
               Declared a UNESCO World Heritage Site in 1988, the fort is still a living,
-              breathing town — with colonial architecture, charming streets, and ocean
-              views that make it one of Sri Lanka's most visited destinations.
+              breathing town — colonial architecture, charming streets, and ocean views
+              that make it one of Sri Lanka's most visited destinations.
             </p>
-            <a
-              href="https://whc.unesco.org/en/list/366"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.learnLink}
-            >
-              Learn more on UNESCO.org →
-            </a>
-          </div>
 
-          {/* Right: Fact cards */}
-          <div className={styles.facts}>
-            <div className={styles.fortVisual}>
-              <div className={styles.fortScene}>
-                {/* Stylized fort silhouette */}
-                <div className={styles.ocean} />
-                <div className={styles.sky} />
-                <div className={styles.wall} />
-                <div className={styles.tower} />
-                <div className={styles.towerTop} />
-                <div className={styles.flag}>🏴</div>
-                <div className={styles.sunEmoji}>☀️</div>
-                <div className={styles.wavesEmoji}>🌊</div>
-              </div>
-            </div>
             <div className={styles.factsGrid}>
               {facts.map((f, i) => (
                 <div key={i} className={styles.factCard}>
@@ -68,9 +55,18 @@ export default function AboutFort() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
 
+            <a
+              href="https://whc.unesco.org/en/list/366"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.learnLink}
+            >
+              Learn more on UNESCO.org →
+            </a>
+          </div>
+
+        </div>
       </div>
     </section>
   );

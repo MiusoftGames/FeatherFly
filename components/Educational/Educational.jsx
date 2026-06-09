@@ -1,10 +1,5 @@
+import Image from 'next/image';
 import styles from './Educational.module.css';
-
-const quizExamples = [
-  { q: 'When was Galle Fort built?', a: '16th century by Portuguese' },
-  { q: 'What is it listed as?', a: 'UNESCO World Heritage Site' },
-  { q: 'Which ocean does Galle face?', a: 'The Indian Ocean' },
-];
 
 export default function Educational() {
   return (
@@ -12,43 +7,7 @@ export default function Educational() {
       <div className="container">
         <div className={styles.layout}>
 
-          {/* Left: Quiz mockup */}
-          <div className={styles.mockup}>
-            <div className={styles.mockupCard}>
-              <div className={styles.mockupHeader}>
-                <span className={styles.crashIcon}>💥</span>
-                <span className={styles.crashText}>Oh no! You crashed!</span>
-              </div>
-              <div className={styles.quizBlock}>
-                <p className={styles.quizLabel}>📚 Quick Quiz</p>
-                <p className={styles.quizQuestion}>
-                  "Which colonial power first built the fort at Galle?"
-                </p>
-                <div className={styles.options}>
-                  {['Portuguese', 'British', 'Dutch', 'French'].map((opt, i) => (
-                    <button key={i} className={`${styles.option} ${i === 0 ? styles.optionCorrect : ''}`}>
-                      {opt}
-                      {i === 0 && <span className={styles.correctBadge}>✓</span>}
-                    </button>
-                  ))}
-                </div>
-                <p className={styles.quizResult}>
-                  Correct! +10 points. Try again?
-                </p>
-              </div>
-              <button className={styles.mockupRetry}>▶ Retry</button>
-            </div>
-
-            {/* Floating knowledge pills */}
-            {quizExamples.map((item, i) => (
-              <div key={i} className={`${styles.floatingPill} ${styles[`pill${i}`]}`}>
-                <span className={styles.pillQ}>{item.q}</span>
-                <span className={styles.pillA}>{item.a}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Right: Copy */}
+          {/* Left: content — image is on the RIGHT this time */}
           <div className={styles.content}>
             <span className={styles.tag}>Education</span>
             <h2 className={styles.title}>Learn While You Play</h2>
@@ -86,6 +45,17 @@ export default function Educational() {
                 </div>
               </li>
             </ul>
+          </div>
+
+          {/* Right: image */}
+          <div className={styles.imageWrap}>
+            <Image
+              src="/images/educational.png"
+              alt="FeatherFly quiz screen after crash"
+              width={520}
+              height={560}
+              className={styles.img}
+            />
           </div>
 
         </div>
