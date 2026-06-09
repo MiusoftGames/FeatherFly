@@ -11,12 +11,12 @@ export const metadata = {
     'FeatherFly', 'Galle Fort', 'casual game', 'educational game',
     'flappy game', 'Sri Lanka', 'mobile game', 'browser game',
   ],
-  authors: [{ name: 'Yoo Game Art' }],
-  creator: 'Yoo Game Art',
+  authors: [{ name: 'Miusoft' }],
+  creator: 'Miusoft',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://featherfly.game',
+    url: 'https://miusoftgames.github.io/FeatherFly/',
     siteName: 'FeatherFly',
     title: 'FeatherFly — Fly. Learn. Explore Galle Fort.',
     description:
@@ -41,7 +41,7 @@ export const metadata = {
     shortcut: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
-  metadataBase: new URL('https://featherfly.game'),
+  metadataBase: new URL('https://miusoftgames.github.io/FeatherFly/'),
 };
 
 export default function RootLayout({ children }) {

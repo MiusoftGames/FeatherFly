@@ -64,9 +64,9 @@ export default function Footer() {
           {/* Contact */}
           <div className={styles.contact}>
             <span className={styles.navHeading}>Contact</span>
-            <a href="mailto:hello@yoogameart.com" className={styles.contactLink}>
+            <a href="mailto:miusoft.games@gmail.com" className={styles.contactLink}>
               <FontAwesomeIcon icon={faEnvelope} />
-              hello@yoogameart.com
+              miusoft.games@gmail.com
             </a>
             <p className={styles.contactNote}>
               Questions, press enquiries, and partnership requests welcome.
@@ -79,7 +79,7 @@ export default function Footer() {
             Made with{' '}
             <FontAwesomeIcon icon={faHeart} className={styles.heart} />{' '}
             by{' '}
-            <a href="#" className={styles.creditLink}>Yoo Game Art</a>
+            <a href="https://miusoftgames.github.io/" className={styles.creditLink}>Miusoft</a>
           </p>
           <p className={styles.legal}>
             © {new Date().getFullYear()} FeatherFly. All rights reserved.
