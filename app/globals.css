@@ -3,10 +3,10 @@
 /* ─── Design Tokens ─────────────────────────────────────────────────────────── */
 :root {
   /* Colors */
-  --color-gold:          #C8922A;
-  --color-gold-light:    #E8B84B;
-  --color-gold-dark:     #9A6E1A;
-  --color-gold-bg:       #FDF6E3;
+  --color-gold:          #2e86de;
+  --color-gold-light:    #ffc857;
+  --color-gold-dark:     #ff9543;
+  --color-gold-bg:       #f8fbff;
 
   --color-stone:         #4A4A4A;
   --color-stone-mid:     #7A7A7A;

@@ -1,5 +1,5 @@
 .section {
-  background: var(--color-ink);
+  background: #2c3e50;
   padding: var(--space-24) 0;
   position: relative;
   overflow: hidden;
@@ -93,21 +93,21 @@
   display: inline-flex;
   align-items: center;
   padding: var(--space-5) var(--space-10);
-  background: var(--color-gold);
+  background: var(--color-gold-dark);
   color: var(--color-white);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1.05rem;
   border-radius: var(--radius-full);
   transition: background var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
-  box-shadow: 0 4px 24px rgba(200,146,42,0.5);
+ /*  box-shadow: 0 4px 24px rgba(200,146,42,0.5); */
   animation: pulse-gold 3s ease-in-out infinite;
 }
 
 .btnPrimary:hover {
-  background: var(--color-gold-light);
+  background: var(--color-gold-dark);
   transform: translateY(-3px);
-  box-shadow: 0 8px 40px rgba(200,146,42,0.6);
+  /* box-shadow: 0 8px 40px rgba(200,146,42,0.6); */
 }
 
 .btnSecondary {

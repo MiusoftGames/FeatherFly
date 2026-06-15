@@ -95,20 +95,20 @@
   display: inline-flex;
   align-items: center;
   padding: var(--space-4) var(--space-8);
-  background: var(--color-gold);
+  background: var(--color-gold-dark);
   color: var(--color-white);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1rem;
   border-radius: var(--radius-full);
   transition: background var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
-  box-shadow: var(--shadow-gold);
+  box-shadow: var(--shadow-gold-dark);
 }
 
 .btnPrimary:hover {
-  background: var(--color-gold-dark);
+  background: var(--color-gold);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(200,146,42,0.45);
+  box-shadow: var(--color-gold);
 }
 
 .btnSecondary {
