@@ -150,7 +150,7 @@
   justify-content: center;
   margin-top: var(--space-3);
   padding: var(--space-3) var(--space-6);
-  background: var(--color-gold);
+  background: var(--color-gold-dark);
   color: var(--color-white);
   font-family: var(--font-heading);
   font-weight: 600;
@@ -160,7 +160,7 @@
 }
 
 .drawerCta:hover {
-  background: var(--color-gold-dark);
+  background: var(--color-gold);
 }
 
 /* Always solid on mobile */

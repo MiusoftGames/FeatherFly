@@ -27,7 +27,7 @@ export default function Hero() {
 
           <div className={styles.buttons}>
             <a href="#" className={styles.btnPrimary}>▶&ensp;Play in Browser</a>
-            <a href="#" className={styles.btnSecondary}>↓&ensp;Get on Android</a>
+           {/*  <a href="#" className={styles.btnSecondary}>↓&ensp;Get on Android</a> */}
           </div>
 
           <div className={styles.stats}>
@@ -51,7 +51,7 @@ export default function Hero() {
         {/* Right: image */}
         <div className={styles.imageWrap}>
           <Image
-            src="/images/hero.png"
+            src="images/hero.png"
             alt="FeatherFly gameplay preview"
             width={520}
             height={560}

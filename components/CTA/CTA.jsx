@@ -24,9 +24,9 @@ export default function CTA() {
             <a href="#" className={styles.btnPrimary}>
               ▶&ensp;Play Now — Free
             </a>
-            <a href="#" className={styles.btnSecondary}>
+            {/* <a href="#" className={styles.btnSecondary}>
               ↓&ensp;Download on Android
-            </a>
+            </a> */}
           </div>
 
           <p className={styles.fine}>
