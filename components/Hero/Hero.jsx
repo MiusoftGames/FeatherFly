@@ -50,13 +50,12 @@ export default function Hero() {
 
         {/* Right: image */}
         <div className={styles.imageWrap}>
-          <Image
+          <img
             src="/images/hero.png"
             alt="FeatherFly gameplay preview"
             width={520}
             height={560}
             className={styles.heroImg}
-            priority
           />
         </div>
       </div>
