@@ -32,7 +32,7 @@ export default function Header() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
         {/* Logo */}
-        <a href="/" className={styles.logo} onClick={closeMenu}>
+        <a href="#" className={styles.logo} onClick={closeMenu}>
           <span className={styles.logoIcon}>
             <FontAwesomeIcon icon={faFeather} />
           </span>

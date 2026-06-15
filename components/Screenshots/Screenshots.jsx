@@ -4,7 +4,7 @@ import styles from './Screenshots.module.css';
 const shots = [
   {
     label: 'Main Menu',
-    desc: 'The golden arch greets you on launch — pick your character and dive straight in.',
+    desc: 'The golden arch greets you on launch. Pick your character and dive straight in.',
     img: 'images/screen-menu.png',
   },
   {
