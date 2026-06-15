@@ -16,8 +16,8 @@ export default function AboutFort() {
 
           {/* Left: image */}
           <div className={styles.imageWrap}>
-            <Image
-              src="/images/about-fort.png"
+            <img
+              src="images/about-fort.png"
               alt="Galle Fort, Sri Lanka"
               width={520}
               height={540}

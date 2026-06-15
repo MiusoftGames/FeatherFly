@@ -45,8 +45,8 @@ export default function Educational() {
 
           {/* Right: image */}
           <div className={styles.imageWrap}>
-            <Image
-              src="/images/educational.png"
+            <img
+              src="images/educational.png"
               alt="FeatherFly quiz screen after crash"
               width={520}
               height={560}

@@ -5,22 +5,22 @@ const shots = [
   {
     label: 'Main Menu',
     desc: 'The golden arch greets you on launch — pick your character and dive straight in.',
-    img: '/images/screen-menu.png',
+    img: 'images/screen-menu.png',
   },
   {
     label: 'Mid-Flight Gameplay',
     desc: "Tight gaps, smooth controls. Every pixel of Galle Fort's walls is an obstacle waiting.",
-    img: '/images/screen-gameplay.png',
+    img: 'images/screen-gameplay.png',
   },
   {
     label: 'Quiz on Crash',
     desc: 'Crash? No problem. Answer a quick question about Galle Fort and earn bonus points.',
-    img: '/images/screen-quiz.png',
+    img: 'images/screen-quiz.png',
   },
   {
     label: 'Puzzle Unlock',
     desc: 'Collect pieces through every run and piece together stunning scenes of the fort.',
-    img: '/images/screen-puzzle.png',
+    img: 'images/screen-puzzle.png',
   },
 ];
 
@@ -37,7 +37,7 @@ export default function Screenshots() {
           {shots.map((s, i) => (
             <div key={i} className={styles.card}>
               <div className={styles.imgWrap}>
-                <Image
+                <img
                   src={s.img}
                   alt={s.label}
                   width={320}
