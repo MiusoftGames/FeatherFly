@@ -21,7 +21,7 @@ export default function Credits() {
 
                     <a href="https://miusoftgames.github.io/" target="_blank" rel="noopener noreferrer" className={styles.card}>
                         <img
-                            src="images/miusoft.jpg"
+                            src="images/miusoftlogo.jpg"
                             alt="Miusoft"
                             className={styles.logo}
                         />
