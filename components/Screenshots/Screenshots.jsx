@@ -33,25 +33,22 @@ export default function Screenshots() {
           <h2 className={styles.title}>A Peek Inside the Fort</h2>
         </div>
 
-        <div className={styles.rows}>
+        <div className={styles.grid}>
           {shots.map((s, i) => (
-            <div
-              key={i}
-              className={`${styles.row} ${i % 2 === 1 ? styles.rowReverse : ''}`}
-            >
+            <div key={i} className={styles.card}>
               <div className={styles.imgWrap}>
                 <Image
                   src={s.img}
                   alt={s.label}
-                  width={540}
-                  height={380}
+                  width={320}
+                  height={620}
                   className={styles.img}
                 />
               </div>
-              <div className={styles.rowContent}>
-                <span className={styles.rowNum}>0{i + 1}</span>
-                <h3 className={styles.rowLabel}>{s.label}</h3>
-                <p className={styles.rowDesc}>{s.desc}</p>
+              <div className={styles.cardContent}>
+                <span className={styles.cardNum}>0{i + 1}</span>
+                <h3 className={styles.cardLabel}>{s.label}</h3>
+                <p className={styles.cardDesc}>{s.desc}</p>
               </div>
             </div>
           ))}

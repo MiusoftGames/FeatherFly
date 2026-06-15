@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faXmark, faFeather } from '@fortawesome/free-solid-svg-icons';
 import styles from './Header.module.css';
+import { GAME_LINK } from '@/lib/config';
 
 const navLinks = [
   { label: 'Gameplay', href: '#gameplay' },
@@ -31,7 +32,7 @@ export default function Header() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
         {/* Logo */}
-        <a href="#" className={styles.logo} onClick={closeMenu}>
+        <a href="/" className={styles.logo} onClick={closeMenu}>
           <span className={styles.logoIcon}>
             <FontAwesomeIcon icon={faFeather} />
           </span>
@@ -48,7 +49,7 @@ export default function Header() {
         </nav>
 
         {/* CTA */}
-        <a href="#hero" className={styles.ctaBtn}>
+        <a href={ GAME_LINK } target="_blank" rel="noopener noreferrer" className={styles.ctaBtn}>
           Play Now
         </a>
 
@@ -70,7 +71,7 @@ export default function Header() {
             {link.label}
           </a>
         ))}
-        <a href="#hero" className={styles.drawerCta} onClick={closeMenu}>
+        <a href={ GAME_LINK } target="_blank" rel="noopener noreferrer" className={styles.drawerCta} onClick={closeMenu}>
           Play Now
         </a>
       </div>

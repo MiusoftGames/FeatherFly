@@ -50,6 +50,7 @@
   animation: floatY 2.5s ease-in-out infinite;
   filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
   margin-bottom: var(--space-2);
+  color: white;
 }
 
 .tag {
@@ -105,7 +106,7 @@
 }
 
 .btnPrimary:hover {
-  background: var(--color-gold-dark);
+  background: var(--color-gold);
   transform: translateY(-3px);
   /* box-shadow: 0 8px 40px rgba(200,146,42,0.6); */
 }

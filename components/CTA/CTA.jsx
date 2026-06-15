@@ -1,4 +1,5 @@
 import styles from './CTA.module.css';
+import { GAME_LINK } from '@/lib/config';
 
 export default function CTA() {
   return (
@@ -11,17 +12,17 @@ export default function CTA() {
 
       <div className="container">
         <div className={styles.inner}>
-          <div className={styles.characterFloat}>🐓</div>
+          <div className={styles.characterFloat}>◈</div>
 
           <span className={styles.tag}>Get Started</span>
           <h2 className={styles.title}>Ready to Fly?</h2>
           <p className={styles.subtitle}>
-            Kukula is waiting at the gates of Galle Fort.<br />
-            How long can you last?
+            Kukula and Mayura are waiting at the gates of Galle Fort.
+            How far can you go?
           </p>
 
           <div className={styles.buttons}>
-            <a href="#" className={styles.btnPrimary}>
+            <a href={GAME_LINK} className={styles.btnPrimary}>
               ▶&ensp;Play Now — Free
             </a>
             {/* <a href="#" className={styles.btnSecondary}>

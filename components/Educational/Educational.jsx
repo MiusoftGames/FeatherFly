@@ -12,14 +12,10 @@ export default function Educational() {
             <span className={styles.tag}>Education</span>
             <h2 className={styles.title}>Learn While You Play</h2>
             <p className={styles.body}>
-              Every crash unlocks a question about Galle Fort's rich history.
-              Answer correctly, earn bonus points, and retry with a little more
-              knowledge in your pocket.
+              Discover fascinating facts about Galle Fort as you play. Answer history questions, earn bonus points, and uncover more about this iconic Sri Lankan landmark.
             </p>
             <p className={styles.body}>
-              It never feels like a lesson — it feels like a reward.
-              The more you play, the more you discover about one of Asia's
-              most remarkable UNESCO World Heritage Sites.
+              Learning is woven into the adventure, making every session both fun and rewarding. The more you explore, the more you'll discover about one of Asia's most remarkable UNESCO World Heritage Sites.
             </p>
 
             <ul className={styles.highlights}>

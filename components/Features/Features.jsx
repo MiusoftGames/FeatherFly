@@ -13,7 +13,7 @@ const features = [
   {
     icon: faPaintBrush,
     title: 'Stylized Visuals',
-    desc: 'Hand-crafted 2D art inspired by the real stone walls and golden archways of Galle Fort.',
+    desc: 'Stylized 2D art inspired by the real stone walls and golden archways of Galle Fort.',
     color: 'gold',
   },
   {

@@ -6,7 +6,7 @@ const steps = [
     icon: '👆',
     num: '01',
     title: 'Tap to Fly',
-    desc: 'Every tap lifts Kukula. Release and gravity does the rest. Simple input, deep challenge.',
+    desc: 'Every tap lifts Bird. Release and gravity does the rest. Simple input, deep challenge.',
   },
   {
     icon: '🏛️',
@@ -36,8 +36,8 @@ export default function Gameplay() {
 
           {/* Left: image */}
           <div className={styles.imageWrap}>
-            <Image
-              src="/images/gameplay.png"
+            <img
+              src="images/gameplay.png"
               alt="FeatherFly gameplay in action"
               width={520}
               height={560}
@@ -47,11 +47,10 @@ export default function Gameplay() {
 
           {/* Right: content */}
           <div className={styles.content}>
-            <span className={styles.tag}>Mechanics</span>
-            <h2 className={styles.title}>Simple to Play.<br />Hard to Master.</h2>
+            <span className={styles.tag}>Gameplay</span>
+            <h2 className={styles.title}>Easy to Learn.<br />Fun to Explore.</h2>
             <p className={styles.subtitle}>
-              One-touch controls anyone can learn in seconds — but mastering
-              the tight gaps of Galle Fort's ancient archways will keep you coming back.
+              Guide Kukula and Mayura through the historic archways of Galle Fort using simple controls, unique abilities, and clever challenges inspired by Flappy Bird and Braid.
             </p>
 
             <ul className={styles.steps}>

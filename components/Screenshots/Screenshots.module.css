@@ -34,60 +34,48 @@
   color: var(--color-ink);
 }
 
-/* Rows */
-.rows {
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+
+.card {
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
+  gap: var(--space-4);
 }
 
-.row {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: var(--space-12);
-  align-items: center;
-}
-
-.rowReverse {
-  grid-template-columns: 2fr 3fr;
-}
-
-.rowReverse .imgWrap {
-  order: 2;
-}
-
-.rowReverse .rowContent {
-  order: 1;
-}
-
-/* Image */
 .imgWrap {
+  position: relative;
   border-radius: var(--radius-xl);
-  overflow: hidden;
+  /* overflow: hidden; */
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--color-border);
+  aspect-ratio: 9 / 16;
 }
 
 .img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   object-fit: cover;
   transition: transform var(--transition-slow);
 }
 
 .imgWrap:hover .img {
-  transform: scale(1.02);
+  transform: scale(1.04);
 }
 
-/* Row content */
-.rowContent {
+.cardContent {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-2);
+  padding: 0 var(--space-1);
 }
 
-.rowNum {
+.cardNum {
   font-family: var(--font-heading);
   font-size: 0.75rem;
   font-weight: 700;
@@ -96,30 +84,35 @@
   text-transform: uppercase;
 }
 
-.rowLabel {
+.cardLabel {
   font-family: var(--font-heading);
-  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-size: 1.1rem;
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--color-ink);
 }
 
-.rowDesc {
-  font-size: 0.95rem;
-  line-height: 1.7;
+.cardDesc {
+  font-size: 0.85rem;
+  line-height: 1.6;
   color: var(--color-ink-soft);
 }
 
-@media (max-width: 768px) {
-  .row,
-  .rowReverse {
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
     grid-template-columns: 1fr;
-    gap: var(--space-6);
   }
 
-  .rowReverse .imgWrap,
-  .rowReverse .rowContent {
-    order: unset;
+  .card {
+    max-width: 360px;
+    margin: 0 auto;
+    width: 100%;
   }
 }

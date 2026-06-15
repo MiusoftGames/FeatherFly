@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './Hero.module.css';
+import { GAME_LINK } from '@/lib/config';
 
 export default function Hero() {
   return (
@@ -20,14 +21,13 @@ export default function Hero() {
           </h1>
 
           <p className={styles.subtext}>
-            Navigate Kukula the rooster through the historic archways of
-            Galle Fort — a UNESCO World Heritage Site in Sri Lanka.
-            A flappy-style game that's as educational as it is addictive.
+            Join Kukula and Mayura on an adventure through Galle Fort.
+            Inspired by Flappy Bird and Braid, it brings together fun gameplay and educational discovery.
           </p>
 
           <div className={styles.buttons}>
-            <a href="#" className={styles.btnPrimary}>▶&ensp;Play in Browser</a>
-           {/*  <a href="#" className={styles.btnSecondary}>↓&ensp;Get on Android</a> */}
+            <a href={GAME_LINK} target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>▶&ensp;Play in Browser</a>
+            {/*  <a href="#" className={styles.btnSecondary}>↓&ensp;Get on Android</a> */}
           </div>
 
           <div className={styles.stats}>

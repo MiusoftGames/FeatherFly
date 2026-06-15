@@ -27,21 +27,16 @@ export default function AboutFort() {
 
           {/* Right: content */}
           <div className={styles.content}>
-            <span className={styles.tag}>The Setting</span>
+            <span className={styles.tag}>About</span>
             <h2 className={styles.title}>
               A Fort Built by Empires,{' '}
               <span className={styles.accent}>Loved by All.</span>
             </h2>
             <p className={styles.body}>
-              Galle Fort, on the southwestern tip of Sri Lanka, was first built by
-              the Portuguese in 1588 and later fortified by the Dutch East India Company
-              in the 17th century. Today it stands as one of the best-preserved examples
-              of a fortified city built by Europeans in South and Southeast Asia.
+              Galle Fort was first built by the Portuguese in 1588 and later expanded by the Dutch in the 17th century. It remains one of the best-preserved fortified cities in Asia.
             </p>
             <p className={styles.body}>
-              Declared a UNESCO World Heritage Site in 1988, the fort is still a living,
-              breathing town — colonial architecture, charming streets, and ocean views
-              that make it one of Sri Lanka's most visited destinations.
+              Recognized as a UNESCO World Heritage Site, Galle Fort is known for its historic architecture, vibrant streets, and stunning ocean views.
             </p>
 
             <div className={styles.factsGrid}>
@@ -57,7 +52,7 @@ export default function AboutFort() {
             </div>
 
             <a
-              href="https://whc.unesco.org/en/list/366"
+              href="https://whc.unesco.org/en/list/451"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.learnLink}

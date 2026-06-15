@@ -8,6 +8,7 @@ import Screenshots from '@/components/Screenshots/Screenshots';
 import CTA from '@/components/CTA/CTA';
 import Footer from '@/components/Footer/Footer';
 import BackToTop from '@/components/BackToTop/BackToTop';
+import Credits from '@/components/Credits/Credits';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <Credits />
         <Gameplay />
         <Educational />
         <AboutFort />
