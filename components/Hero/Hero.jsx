@@ -51,7 +51,7 @@ export default function Hero() {
         {/* Right: image */}
         <div className={styles.imageWrap}>
           <Image
-            src="images/hero.png"
+            src="/images/hero.png"
             alt="FeatherFly gameplay preview"
             width={520}
             height={560}
