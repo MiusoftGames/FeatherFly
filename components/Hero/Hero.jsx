@@ -16,7 +16,7 @@ export default function Hero() {
           </div>
 
           <h1 className={styles.headline}>
-            Fly. Learn.<br />
+            Fly. Fail. Learn.<br />
             <span className={styles.headlineAccent}>Explore Galle Fort.</span>
           </h1>
 
