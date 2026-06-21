@@ -9,6 +9,7 @@ import CTA from '@/components/CTA/CTA';
 import Footer from '@/components/Footer/Footer';
 import BackToTop from '@/components/BackToTop/BackToTop';
 import Credits from '@/components/Credits/Credits';
+import MusicToggle from '@/components/MusicToggle/MusicToggle';
 
 export default function Home() {
   return (
@@ -24,8 +25,9 @@ export default function Home() {
         <Screenshots />
         <CTA />
       </main>
-     {/*  <Footer /> */}
+      {/*  <Footer /> */}
       <BackToTop />
+      <MusicToggle />
     </>
   );
 }
