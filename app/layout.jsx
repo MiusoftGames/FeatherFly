@@ -1,6 +1,8 @@
 import './globals.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import { PlayerGateProvider } from './contexts/PlayerGateContext';
+
 config.autoAddCss = false;
 
 export const metadata = {
@@ -47,7 +49,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <PlayerGateProvider>
+          {children}
+        </PlayerGateProvider>
+      </body>
     </html>
   );
 }

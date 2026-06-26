@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faXmark, faFeather } from '@fortawesome/free-solid-svg-icons';
 import styles from './Header.module.css';
 import { GAME_LINK } from '@/lib/config';
+import PlayButton from '../PlayButton/PlayButton';
 
 const navLinks = [
   { label: 'Gameplay', href: '#gameplay' },
@@ -49,9 +50,9 @@ export default function Header() {
         </nav>
 
         {/* CTA */}
-        <a href={ GAME_LINK } target="_blank" rel="noopener noreferrer" className={styles.ctaBtn}>
+        <PlayButton className={styles.ctaBtn}>
           Play Now
-        </a>
+        </PlayButton>
 
         {/* Mobile hamburger */}
         <button
@@ -71,9 +72,9 @@ export default function Header() {
             {link.label}
           </a>
         ))}
-        <a href={ GAME_LINK } target="_blank" rel="noopener noreferrer" className={styles.drawerCta} onClick={closeMenu}>
+        <PlayButton className={styles.drawerCta} /* onClick={closeMenu} */>
           Play Now
-        </a>
+        </PlayButton>
       </div>
     </header>
   );

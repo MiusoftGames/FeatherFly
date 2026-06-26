@@ -1,9 +1,12 @@
-import Image from 'next/image';
+'use client';
+import { useState } from 'react';
 import styles from './Hero.module.css';
 import { GAME_LINK, GAME_LINK_ANDROID } from '@/lib/config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { faGooglePlay } from '@fortawesome/free-brands-svg-icons';
+import PlayerGateForm from '../PlayerGateForm/PlayerGateForm';
+import PlayButton from '../PlayButton/PlayButton';
 
 export default function Hero() {
   return (
@@ -29,10 +32,13 @@ export default function Hero() {
           </p>
 
           <div className={styles.buttons}>
-            <a href={GAME_LINK} target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}><FontAwesomeIcon icon={faPlay} /> &ensp;Play in Browser</a>
-            <a href={GAME_LINK_ANDROID} target="_blank" className={styles.btnSecondary}><FontAwesomeIcon icon={faGooglePlay} /> &ensp;Google Play Store</a>
+            <PlayButton className={styles.btnPrimary}>
+               &ensp;Play in Browser
+            </PlayButton>
+            {/* <a href={GAME_LINK} target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}><FontAwesomeIcon icon={faPlay} /> &ensp;Play in Browser</a> */}
+            {/* <a href={GAME_LINK_ANDROID} target="_blank" className={styles.btnSecondary}><FontAwesomeIcon icon={faGooglePlay} /> &ensp;Google Play Store</a> */}
           </div>
-
+          
           <div className={styles.stats}>
             <div className={styles.stat}>
               <span className={styles.statNum}>50+</span>
