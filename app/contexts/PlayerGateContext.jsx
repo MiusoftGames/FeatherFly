@@ -15,7 +15,7 @@ export function PlayerGateProvider({ children }) {
   // Modal stays open on success so the player sees the confirmation +
   // fallback link; it only closes when they click the X.
   const handleSuccess = () => {
-    window.open(GAME_LINK);
+    window.location.href = GAME_LINK;
   };
 
   return (

@@ -76,7 +76,7 @@ export default function PlayerGateForm({ isOpen, onClose, onSuccess }) {
           <div className={styles.successState}>
             <FontAwesomeIcon icon={faCircleCheck} className={styles.successIcon} />
             <p>You're in. Loading the game…</p>
-            <a href={GAME_LINK} rel="noopener noreferrer" className={styles.fallbackLink}>
+            <a href={GAME_LINK} className={styles.fallbackLink}>
               Click here if not loading
             </a>
           </div>
