@@ -49,13 +49,12 @@ export default async function LearnPage({ params }) {
                     <div className={`container ${styles.layout}`}>
 
                         <div className={styles.imageWrap}>
-                            <Image
+                            <img
                                 src={street.image}
                                 alt={`${street.name} in Galle Fort`}
                                 width={700}
                                 height={550}
                                 className={styles.img}
-                                priority
                             />
                         </div>
 
