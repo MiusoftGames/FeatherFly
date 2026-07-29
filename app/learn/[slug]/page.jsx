@@ -4,10 +4,7 @@ import { learnData } from "@/lib/learnData";
 import styles from "./page.module.css";
 
 import Header from "@/components/Header/Header";
-import CTA from "@/components/CTA/CTA";
 import BackToTop from "@/components/BackToTop/BackToTop";
-import MusicToggle from "@/components/MusicToggle/MusicToggle";
-import Footer from "@/components/Footer/Footer";
 
 export function generateStaticParams() {
     return Object.keys(learnData).map((slug) => ({
