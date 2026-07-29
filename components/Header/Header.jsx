@@ -8,10 +8,10 @@ import { GAME_LINK } from '@/lib/config';
 import PlayButton from '../PlayButton/PlayButton';
 
 const navLinks = [
-  { label: 'Gameplay', href: '/#gameplay' },
-  { label: 'Learn', href: '/#educational' },
-  { label: 'About Fort', href: '/#about-fort' },
-  { label: 'Features', href: '/#features' },
+  { label: 'Gameplay', href: '/FeatherFly/#gameplay' },
+  { label: 'Learn', href: '/FeatherFly/#educational' },
+  { label: 'About Fort', href: '/FeatherFly/#about-fort' },
+  { label: 'Features', href: '/FeatherFly/#features' },
 ];
 
 export default function Header() {
@@ -33,7 +33,7 @@ export default function Header() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
         {/* Logo */}
-        <a href="#" className={styles.logo} onClick={closeMenu}>
+        <a href="/FeatherFly" className={styles.logo} onClick={closeMenu}>
           <span className={styles.logoIcon}>
             <FontAwesomeIcon icon={faFeather} />
           </span>
