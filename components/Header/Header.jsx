@@ -8,10 +8,10 @@ import { GAME_LINK } from '@/lib/config';
 import PlayButton from '../PlayButton/PlayButton';
 
 const navLinks = [
-  { label: 'Gameplay', href: '#gameplay' },
-  { label: 'Learn', href: '#educational' },
-  { label: 'About Fort', href: '#about-fort' },
-  { label: 'Features', href: '#features' },
+  { label: 'Gameplay', href: '/#gameplay' },
+  { label: 'Learn', href: '/#educational' },
+  { label: 'About Fort', href: '/#about-fort' },
+  { label: 'Features', href: '/#features' },
 ];
 
 export default function Header() {
