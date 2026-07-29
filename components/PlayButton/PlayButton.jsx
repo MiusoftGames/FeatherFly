@@ -24,7 +24,7 @@ export default function PlayButton({
     };
 
     return (
-        <button type="button" onClick={openGate} className={className} {...rest}>
+        <button type="button" onClick={openGame} className={className} {...rest}>
             {icon && <FontAwesomeIcon icon={icon} />} &ensp;{children}
         </button>
     );
