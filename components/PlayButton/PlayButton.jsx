@@ -2,7 +2,6 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
-import { usePlayerGate } from '@/app/contexts/PlayerGateContext';
 import { GAME_LINK } from '@/lib/config';
 
 /**
@@ -21,7 +20,7 @@ export default function PlayButton({
     ...rest
 }) {
     const openGame = () => {
-        window.location.href = GAME_LINKNK;
+        window.location.href = GAME_LINK;
     };
 
     return (
