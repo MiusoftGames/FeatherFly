@@ -3,6 +3,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { usePlayerGate } from '@/app/contexts/PlayerGateContext';
+import { GAME_LINK } from '@/lib/config';
 
 /**
  * Drop this anywhere a "Play" trigger is needed (navbar, hero, footer CTA...).
@@ -19,7 +20,9 @@ export default function PlayButton({
     icon = faPlay,
     ...rest
 }) {
-    const { openGate } = usePlayerGate();
+    const openGame = () => {
+        window.location.href = GAME_LINKNK;
+    };
 
     return (
         <button type="button" onClick={openGate} className={className} {...rest}>
