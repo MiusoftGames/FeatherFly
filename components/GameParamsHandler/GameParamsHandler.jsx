@@ -11,8 +11,9 @@ export default function GameParamsHandler() {
     const hasScore = searchParams.has('score');
     const hasLevels = searchParams.has('levels_passed');
     const hasCharacter = searchParams.has('character');
+    const hasPlayerName = searchParams.has('player_name');
 
-    if (hasScore || hasLevels || hasCharacter) {
+    if (hasScore || hasLevels || hasCharacter || hasPlayerName) {
       const queryString = searchParams.toString();
       router.push(`/results?${queryString}`);
     }
