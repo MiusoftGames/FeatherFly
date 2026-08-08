@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 
 import Header from "@/components/Header/Header";
 import BackToTop from "@/components/BackToTop/BackToTop";
+import Footer from "@/components/Footer/Footer";
 
 export function generateStaticParams() {
     return Object.keys(learnData).map((slug) => ({
@@ -18,13 +19,38 @@ export async function generateMetadata({ params }) {
 
     if (!street) {
         return {
-            title: "Street Not Found | FeatherFly",
+            title: "Street Not Found",
         };
     }
 
+    const title = `${street.name} | Explore Galle Fort Heritage`;
+    const description = street.description;
+    const canonicalUrl = `/learn/${slug}`;
+
     return {
-        title: `${street.name} | Explore Galle Fort | FeatherFly`,
-        description: street.description,
+        title,
+        description,
+        keywords: [street.name, 'Galle Fort', 'Galle Fort Streets', 'Sri Lanka History', 'FeatherFly Learn', street.tag],
+        alternates: {
+            canonical: canonicalUrl,
+        },
+        openGraph: {
+            title: `${title} | FeatherFly`,
+            description,
+            url: `https://miusoftgames.github.io/FeatherFly${canonicalUrl}`,
+            images: [
+                {
+                    url: street.image,
+                    alt: `${street.name} in Galle Fort, Sri Lanka`,
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${title} | FeatherFly`,
+            description,
+            images: [street.image],
+        },
     };
 }
 
@@ -121,7 +147,7 @@ export default async function LearnPage({ params }) {
                 </section>
             </main>
 
-            {/* <Footer /> */}
+            <Footer />
             <BackToTop />
         </>
     );

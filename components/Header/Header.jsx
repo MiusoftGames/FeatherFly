@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faXmark, faFeather } from '@fortawesome/free-solid-svg-icons';
 import styles from './Header.module.css';
@@ -8,10 +9,10 @@ import { GAME_LINK } from '@/lib/config';
 import PlayButton from '../PlayButton/PlayButton';
 
 const navLinks = [
-  { label: 'Gameplay', href: '/FeatherFly/#gameplay' },
-  { label: 'Learn', href: '/FeatherFly/#educational' },
-  { label: 'About Fort', href: '/FeatherFly/#about-fort' },
-  { label: 'Features', href: '/FeatherFly/#features' },
+  { label: 'Gameplay', href: '/#gameplay' },
+  { label: 'Learn', href: '/#educational' },
+  { label: 'About Fort', href: '/#about-fort' },
+  { label: 'Features', href: '/#features' },
 ];
 
 export default function Header() {
@@ -33,19 +34,19 @@ export default function Header() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
         {/* Logo */}
-        <a href="/FeatherFly" className={styles.logo} onClick={closeMenu}>
+        <Link href="/" className={styles.logo} onClick={closeMenu}>
           <span className={styles.logoIcon}>
             <FontAwesomeIcon icon={faFeather} />
           </span>
           <span className={styles.logoText}>FeatherFly</span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <nav className={styles.nav}>
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className={styles.navLink}>
+            <Link key={link.href} href={link.href} className={styles.navLink}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -68,9 +69,9 @@ export default function Header() {
       {/* Mobile drawer */}
       <div className={`${styles.drawer} ${menuOpen ? styles.drawerOpen : ''}`}>
         {navLinks.map((link) => (
-          <a key={link.href} href={link.href} className={styles.drawerLink} onClick={closeMenu}>
+          <Link key={link.href} href={link.href} className={styles.drawerLink} onClick={closeMenu}>
             {link.label}
-          </a>
+          </Link>
         ))}
         <PlayButton className={styles.drawerCta} /* onClick={closeMenu} */>
           Play Now

@@ -21,9 +21,9 @@ export default function Footer() {
           </div>
 
           <div className={styles.navLinks}>
-            <a href="/FeatherFly/#gameplay" className={styles.navLink}>Gameplay</a>
-            <a href="/FeatherFly/#educational" className={styles.navLink}>Learn</a>
-            <a href="/FeatherFly/#about-fort" className={styles.navLink}>About Fort</a>
+            <Link href="/#gameplay" className={styles.navLink}>Gameplay</Link>
+            <Link href="/#educational" className={styles.navLink}>Learn</Link>
+            <Link href="/#about-fort" className={styles.navLink}>About Fort</Link>
             <Link href="/privacy-policy" className={styles.navLink}>Privacy Policy</Link>
           </div>
         </div>

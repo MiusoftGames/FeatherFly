@@ -3,7 +3,15 @@ import styles from './page.module.css';
 
 export const metadata = {
   title: 'Privacy Policy',
-  description: 'How Imagine Island collects and uses your information when you play FeatherFly.',
+  description: 'How Imagine Island & Miusoft collect and protect your information when you play FeatherFly.',
+  alternates: {
+    canonical: '/privacy-policy',
+  },
+  openGraph: {
+    title: 'Privacy Policy | FeatherFly',
+    description: 'How Imagine Island & Miusoft collect and protect your information when you play FeatherFly.',
+    url: 'https://miusoftgames.github.io/FeatherFly/privacy-policy',
+  },
 };
 
 const LAST_UPDATED = 'June 26, 2026';
