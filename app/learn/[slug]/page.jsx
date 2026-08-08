@@ -26,10 +26,8 @@ export async function generateMetadata({ params }) {
     const title = `${street.name} | Explore Galle Fort Heritage`;
     const description = street.description;
     const canonicalUrl = `/learn/${slug}`;
-    const imagePath = street.image.startsWith('/FeatherFly')
-        ? street.image
-        : `/FeatherFly${street.image.startsWith('/') ? '' : '/'}${street.image}`;
-    const fullImageUrl = `https://miusoftgames.github.io${imagePath}`;
+    const basePath = process.env.NODE_ENV === 'production' ? '/FeatherFly' : '';
+    const fullImageUrl = `https://miusoftgames.github.io${basePath}${street.image}`;
 
     return {
         title,
@@ -66,10 +64,6 @@ export default async function LearnPage({ params }) {
         notFound();
     }
 
-    const imagePath = street.image.startsWith('/FeatherFly')
-        ? street.image
-        : `/FeatherFly${street.image.startsWith('/') ? '' : '/'}${street.image}`;
-
     return (
         <>
             <Header />
@@ -80,12 +74,13 @@ export default async function LearnPage({ params }) {
                     <div className={`container ${styles.layout}`}>
 
                         <div className={styles.imageWrap}>
-                            <img
-                                src={imagePath}
+                            <Image
+                                src={street.image}
                                 alt={`${street.name} in Galle Fort`}
                                 width={700}
                                 height={550}
                                 className={styles.img}
+                                unoptimized
                             />
                         </div>
 

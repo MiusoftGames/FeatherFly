@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './Credits.module.css';
 
 export default function Credits() {
@@ -6,10 +7,13 @@ export default function Credits() {
             <div className={`container ${styles.inner}`}>
                 <div className={styles.grid}>
                     <a href="https://www.instagram.com/island.imagine/" target="_blank" rel="noopener noreferrer" className={styles.card}>
-                        <img
-                            src="images/imagineisland.jpg"
+                        <Image
+                            src="/images/imagineisland.jpg"
                             alt="Imagine Island"
+                            width={80}
+                            height={80}
                             className={styles.logo}
+                            unoptimized
                         />
                         <div className={styles.devInfo}>
                             <p className={styles.label}>A Game by</p>
@@ -20,10 +24,13 @@ export default function Credits() {
                     <div className={styles.divider} aria-hidden="true" />
 
                     <a href="https://miusoftgames.github.io/" target="_blank" rel="noopener noreferrer" className={styles.card}>
-                        <img
-                            src="images/miusoftlogo.jpg"
+                        <Image
+                            src="/images/miusoftlogo.jpg"
                             alt="Miusoft"
+                            width={80}
+                            height={80}
                             className={styles.logo}
+                            unoptimized
                         />
                         <div className={styles.devInfo}>
                             <p className={styles.label}>Developed by</p>

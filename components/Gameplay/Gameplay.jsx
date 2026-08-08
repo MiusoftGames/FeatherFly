@@ -36,12 +36,13 @@ export default function Gameplay() {
 
           {/* Left: image */}
           <div className={styles.imageWrap}>
-            <img
-              src="images/gameplay.png"
+            <Image
+              src="/images/gameplay.png"
               alt="FeatherFly gameplay in action"
               width={520}
               height={560}
               className={styles.img}
+              unoptimized
             />
           </div>
 

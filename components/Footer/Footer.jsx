@@ -9,12 +9,12 @@ export default function Footer() {
       <div className={`container ${styles.container}`}>
         <div className={styles.topRow}>
           <div className={styles.brand}>
-            <div className={styles.logo}>
+            <Link href="/" className={styles.logo}>
               <span className={styles.logoIcon}>
                 <FontAwesomeIcon icon={faFeather} />
               </span>
               <span className={styles.logoText}>FeatherFly</span>
-            </div>
+            </Link>
             <p className={styles.tagline}>
               A fun & educational flappy-style adventure exploring the rich history of Galle Fort, Sri Lanka.
             </p>

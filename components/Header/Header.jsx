@@ -2,22 +2,25 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faXmark, faFeather } from '@fortawesome/free-solid-svg-icons';
 import styles from './Header.module.css';
-import { GAME_LINK } from '@/lib/config';
 import PlayButton from '../PlayButton/PlayButton';
 
 const navLinks = [
-  { label: 'Gameplay', href: '/#gameplay' },
-  { label: 'Learn', href: '/#educational' },
-  { label: 'About Fort', href: '/#about-fort' },
-  { label: 'Features', href: '/#features' },
+  { label: 'Gameplay', hash: '#gameplay' },
+  { label: 'Learn', hash: '#educational' },
+  { label: 'About Fort', hash: '#about-fort' },
+  { label: 'Features', hash: '#features' },
 ];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isHome = pathname === '/' || pathname === '/FeatherFly' || pathname === '/FeatherFly/';
 
   const handleScroll = useCallback(() => {
     setScrolled(window.scrollY > 20);
@@ -43,11 +46,14 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className={styles.nav}>
-          {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.navLink}>
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const href = isHome ? link.hash : `/${link.hash}`;
+            return (
+              <Link key={link.hash} href={href} className={styles.navLink}>
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* CTA */}
@@ -68,12 +74,15 @@ export default function Header() {
 
       {/* Mobile drawer */}
       <div className={`${styles.drawer} ${menuOpen ? styles.drawerOpen : ''}`}>
-        {navLinks.map((link) => (
-          <Link key={link.href} href={link.href} className={styles.drawerLink} onClick={closeMenu}>
-            {link.label}
-          </Link>
-        ))}
-        <PlayButton className={styles.drawerCta} /* onClick={closeMenu} */>
+        {navLinks.map((link) => {
+          const href = isHome ? link.hash : `/${link.hash}`;
+          return (
+            <Link key={link.hash} href={href} className={styles.drawerLink} onClick={closeMenu}>
+              {link.label}
+            </Link>
+          );
+        })}
+        <PlayButton className={styles.drawerCta}>
           Play Now
         </PlayButton>
       </div>

@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Image from 'next/image';
 import styles from './Hero.module.css';
 import { GAME_LINK, GAME_LINK_ANDROID } from '@/lib/config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -59,12 +60,13 @@ export default function Hero() {
 
         {/* Right: image */}
         <div className={styles.imageWrap}>
-          <img
-            src="images/hero.png"
+          <Image
+            src="/images/hero.png"
             alt="FeatherFly gameplay preview"
             width={520}
             height={560}
             className={styles.heroImg}
+            unoptimized
           />
         </div>
       </div>

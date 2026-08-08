@@ -16,12 +16,13 @@ export default function AboutFort() {
 
           {/* Left: image */}
           <div className={styles.imageWrap}>
-            <img
-              src="images/about-fort.png"
+            <Image
+              src="/images/about-fort.png"
               alt="Galle Fort, Sri Lanka"
               width={520}
               height={540}
               className={styles.img}
+              unoptimized
             />
           </div>
 
