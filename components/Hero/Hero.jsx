@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import styles from './Hero.module.css';
-import { GAME_LINK, GAME_LINK_ANDROID } from '@/lib/config';
+import { GAME_LINK, GAME_LINK_ANDROID, getImageUrl } from '@/lib/config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { faGooglePlay } from '@fortawesome/free-brands-svg-icons';
@@ -61,7 +61,7 @@ export default function Hero() {
         {/* Right: image */}
         <div className={styles.imageWrap}>
           <Image
-            src="/images/hero.png"
+            src={getImageUrl('/images/hero.png')}
             alt="FeatherFly gameplay preview"
             width={520}
             height={560}

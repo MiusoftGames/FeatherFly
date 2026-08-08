@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './AboutFort.module.css';
+import { getImageUrl } from '@/lib/config';
 
 const facts = [
   { icon: '📅', label: 'Founded', value: '1588 AD' },
@@ -17,7 +18,7 @@ export default function AboutFort() {
           {/* Left: image */}
           <div className={styles.imageWrap}>
             <Image
-              src="/images/about-fort.png"
+              src={getImageUrl('/images/about-fort.png')}
               alt="Galle Fort, Sri Lanka"
               width={520}
               height={540}

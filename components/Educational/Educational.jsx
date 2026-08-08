@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './Educational.module.css';
+import { getImageUrl } from '@/lib/config';
 
 export default function Educational() {
   return (
@@ -46,7 +47,7 @@ export default function Educational() {
           {/* Right: image */}
           <div className={styles.imageWrap}>
             <Image
-              src="/images/educational.png"
+              src={getImageUrl('/images/educational.png')}
               alt="FeatherFly quiz screen after crash"
               width={520}
               height={560}

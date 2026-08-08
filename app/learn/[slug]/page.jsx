@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { learnData } from "@/lib/learnData";
+import { getImageUrl } from "@/lib/config";
 import styles from "./page.module.css";
 
 import Header from "@/components/Header/Header";
@@ -26,8 +27,7 @@ export async function generateMetadata({ params }) {
     const title = `${street.name} | Explore Galle Fort Heritage`;
     const description = street.description;
     const canonicalUrl = `/learn/${slug}`;
-    const basePath = process.env.NODE_ENV === 'production' ? '/FeatherFly' : '';
-    const fullImageUrl = `https://miusoftgames.github.io${basePath}${street.image}`;
+    const fullImageUrl = `https://miusoftgames.github.io${getImageUrl(street.image)}`;
 
     return {
         title,
@@ -75,7 +75,7 @@ export default async function LearnPage({ params }) {
 
                         <div className={styles.imageWrap}>
                             <Image
-                                src={street.image}
+                                src={getImageUrl(street.image)}
                                 alt={`${street.name} in Galle Fort`}
                                 width={700}
                                 height={550}

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './Screenshots.module.css';
+import { getImageUrl } from '@/lib/config';
 
 const shots = [
   {
@@ -38,7 +39,7 @@ export default function Screenshots() {
             <div key={i} className={styles.card}>
               <div className={styles.imgWrap}>
                 <Image
-                  src={s.img}
+                  src={getImageUrl(s.img)}
                   alt={s.label}
                   width={320}
                   height={620}

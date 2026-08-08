@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './Gameplay.module.css';
+import { getImageUrl } from '@/lib/config';
 
 const steps = [
   {
@@ -37,7 +38,7 @@ export default function Gameplay() {
           {/* Left: image */}
           <div className={styles.imageWrap}>
             <Image
-              src="/images/gameplay.png"
+              src={getImageUrl('/images/gameplay.png')}
               alt="FeatherFly gameplay in action"
               width={520}
               height={560}

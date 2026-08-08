@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './Credits.module.css';
+import { getImageUrl } from '@/lib/config';
 
 export default function Credits() {
     return (
@@ -8,7 +9,7 @@ export default function Credits() {
                 <div className={styles.grid}>
                     <a href="https://www.instagram.com/island.imagine/" target="_blank" rel="noopener noreferrer" className={styles.card}>
                         <Image
-                            src="/images/imagineisland.jpg"
+                            src={getImageUrl('/images/imagineisland.jpg')}
                             alt="Imagine Island"
                             width={80}
                             height={80}
@@ -25,7 +26,7 @@ export default function Credits() {
 
                     <a href="https://miusoftgames.github.io/" target="_blank" rel="noopener noreferrer" className={styles.card}>
                         <Image
-                            src="/images/miusoftlogo.jpg"
+                            src={getImageUrl('/images/miusoftlogo.jpg')}
                             alt="Miusoft"
                             width={80}
                             height={80}
