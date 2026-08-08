@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Header from '@/components/Header/Header';
 import Hero from '@/components/Hero/Hero';
 import Gameplay from '@/components/Gameplay/Gameplay';
@@ -10,10 +11,14 @@ import Footer from '@/components/Footer/Footer';
 import BackToTop from '@/components/BackToTop/BackToTop';
 import Credits from '@/components/Credits/Credits';
 import MusicToggle from '@/components/MusicToggle/MusicToggle';
+import GameParamsHandler from '@/components/GameParamsHandler/GameParamsHandler';
 
 export default function Home() {
   return (
     <>
+      <Suspense fallback={null}>
+        <GameParamsHandler />
+      </Suspense>
       <Header />
       <main>
         <Hero />
