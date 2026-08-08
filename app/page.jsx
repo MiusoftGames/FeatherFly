@@ -30,7 +30,7 @@ export default function Home() {
         <Screenshots />
         <CTA />
       </main>
-      {/*  <Footer /> */}
+      <Footer />
       <BackToTop />
       <MusicToggle />
     </>
