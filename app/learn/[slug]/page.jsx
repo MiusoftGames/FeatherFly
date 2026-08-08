@@ -26,6 +26,10 @@ export async function generateMetadata({ params }) {
     const title = `${street.name} | Explore Galle Fort Heritage`;
     const description = street.description;
     const canonicalUrl = `/learn/${slug}`;
+    const imagePath = street.image.startsWith('/FeatherFly')
+        ? street.image
+        : `/FeatherFly${street.image.startsWith('/') ? '' : '/'}${street.image}`;
+    const fullImageUrl = `https://miusoftgames.github.io${imagePath}`;
 
     return {
         title,
@@ -40,7 +44,7 @@ export async function generateMetadata({ params }) {
             url: `https://miusoftgames.github.io/FeatherFly${canonicalUrl}`,
             images: [
                 {
-                    url: street.image,
+                    url: fullImageUrl,
                     alt: `${street.name} in Galle Fort, Sri Lanka`,
                 },
             ],
@@ -49,7 +53,7 @@ export async function generateMetadata({ params }) {
             card: 'summary_large_image',
             title: `${title} | FeatherFly`,
             description,
-            images: [street.image],
+            images: [fullImageUrl],
         },
     };
 }
@@ -62,6 +66,10 @@ export default async function LearnPage({ params }) {
         notFound();
     }
 
+    const imagePath = street.image.startsWith('/FeatherFly')
+        ? street.image
+        : `/FeatherFly${street.image.startsWith('/') ? '' : '/'}${street.image}`;
+
     return (
         <>
             <Header />
@@ -73,7 +81,7 @@ export default async function LearnPage({ params }) {
 
                         <div className={styles.imageWrap}>
                             <img
-                                src={street.image}
+                                src={imagePath}
                                 alt={`${street.name} in Galle Fort`}
                                 width={700}
                                 height={550}
