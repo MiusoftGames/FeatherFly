@@ -1,9 +1,21 @@
+'use client';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFeather } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styles from './Footer.module.css';
 
+const footerNavLinks = [
+  { label: 'Gameplay', hash: '#gameplay' },
+  { label: 'Learn', hash: '#educational' },
+  { label: 'About Fort', hash: '#about-fort' },
+];
+
 export default function Footer() {
+  const pathname = usePathname();
+  const isHome = pathname === '/' || pathname === '/FeatherFly' || pathname === '/FeatherFly/';
+
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.container}`}>
@@ -21,9 +33,14 @@ export default function Footer() {
           </div>
 
           <div className={styles.navLinks}>
-            <Link href="/#gameplay" className={styles.navLink}>Gameplay</Link>
-            <Link href="/#educational" className={styles.navLink}>Learn</Link>
-            <Link href="/#about-fort" className={styles.navLink}>About Fort</Link>
+            {footerNavLinks.map((link) => {
+              const href = isHome ? link.hash : `/${link.hash}`;
+              return (
+                <Link key={link.hash} href={href} className={styles.navLink}>
+                  {link.label}
+                </Link>
+              );
+            })}
             <Link href="/privacy-policy" className={styles.navLink}>Privacy Policy</Link>
           </div>
         </div>
