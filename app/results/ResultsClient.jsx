@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { getImageUrl } from '@/lib/config';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import BackToTop from '@/components/BackToTop/BackToTop';
@@ -19,6 +20,7 @@ import {
   faXmark,
   faShareNodes,
   faCheck,
+  faCopy,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './page.module.css';
 
@@ -54,6 +56,15 @@ function ResultsContent() {
   // State for Player Name (pre-filled if passed, but editable)
   const [playerName, setPlayerName] = useState(rawPlayerName || '');
   const [shareMsg, setShareMsg] = useState('');
+  const [copiedPost, setCopiedPost] = useState(false);
+
+  const sampleText = `Check out my FeatherFly Galle Fort Memory Badge! Score: ${score} #FeatherFly`;
+
+  const copySamplePost = () => {
+    navigator.clipboard.writeText(sampleText);
+    setCopiedPost(true);
+    setTimeout(() => setCopiedPost(false), 2500);
+  };
 
   // Sync if rawPlayerName changes
   useEffect(() => {
@@ -169,10 +180,12 @@ function ResultsContent() {
     }
   };
 
-  // Share Souvenir Badge image or link
+  // Share Souvenir Badge image or link with #FeatherFly
   const shareSouvenir = async () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    const shareText = `Check out my FeatherFly Galle Fort Memory Badge! Score: ${score} #FeatherFly #GalleFort`;
 
     try {
       if (canvas.toBlob) {
@@ -184,23 +197,23 @@ function ResultsContent() {
 
           if (navigator.canShare && navigator.canShare({ files: [file] })) {
             await navigator.share({
-              title: 'FeatherFly Galle Fort Souvenir Badge',
-              text: `Check out my FeatherFly Galle Fort Memory Badge! Score: ${score}`,
+              title: 'FeatherFly Galle Fort Souvenir Badge #FeatherFly',
+              text: shareText,
               files: [file],
             });
             return;
           } else if (navigator.share) {
             await navigator.share({
-              title: 'FeatherFly Galle Fort Souvenir Badge',
-              text: `Check out my FeatherFly Galle Fort Memory Badge! Score: ${score}`,
+              title: 'FeatherFly Galle Fort Souvenir Badge #FeatherFly',
+              text: shareText,
               url: window.location.href,
             });
             return;
           }
 
           // Fallback to clipboard link
-          await navigator.clipboard.writeText(window.location.href);
-          setShareMsg('Link copied to clipboard!');
+          await navigator.clipboard.writeText(`${shareText}\n${window.location.href}`);
+          setShareMsg('Link & #FeatherFly copied!');
           setTimeout(() => setShareMsg(''), 3000);
         });
       }
@@ -215,168 +228,176 @@ function ResultsContent() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    const width = 600;
-    const height = 750;
+    const width = 1080;
+    const height = 1350;
     canvas.width = width;
     canvas.height = height;
 
-    // 1. Background gradient (Galle Fort Sky theme)
-    const bgGradient = ctx.createLinearGradient(0, 0, 0, height);
-    bgGradient.addColorStop(0, '#d6eefa');
-    bgGradient.addColorStop(0.5, '#ffffff');
-    bgGradient.addColorStop(1, '#f8fbff');
-    ctx.fillStyle = bgGradient;
-    ctx.fillRect(0, 0, width, height);
+    // Load Frame Image
+    const frameImg = new Image();
+    frameImg.crossOrigin = 'anonymous';
+    const frameSrc = getImageUrl('/images/website photo frame.png');
 
-    // 2. Outer Decorative Border
-    ctx.lineWidth = 12;
-    ctx.strokeStyle = '#2e86de';
-    ctx.strokeRect(10, 10, width - 20, height - 20);
+    frameImg.onload = () => {
+      renderCanvas(frameImg);
+    };
+    frameImg.onerror = () => {
+      renderCanvas(null);
+    };
+    frameImg.src = frameSrc;
 
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = '#ff9543';
-    ctx.strokeRect(18, 18, width - 36, height - 36);
+    function renderCanvas(frame) {
+      // 1. Clear background
+      ctx.clearRect(0, 0, width, height);
 
-    // 3. Card Header
-    ctx.fillStyle = '#1e1c18';
-    ctx.font = 'bold 24px "Space Grotesk", sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText('FEATHERFLY SOUVENIR', width / 2, 54);
+      // Soft Sky Fill Background
+      const skyGrad = ctx.createLinearGradient(0, 0, 0, height);
+      skyGrad.addColorStop(0, '#cce7ff');
+      skyGrad.addColorStop(1, '#ffffff');
+      ctx.fillStyle = skyGrad;
+      ctx.fillRect(0, 0, width, height);
 
-    ctx.fillStyle = '#2e86de';
-    ctx.font = 'bold 14px "Inter", sans-serif';
-    ctx.fillText('GALLE FORT • SRI LANKA MEMORY CARD', width / 2, 76);
+      // 2. Arch Photo Slot Bounds
+      const photoX = 270;
+      const photoY = 140;
+      const photoW = 540;
+      const photoH = 810;
 
-    // 4. Photo Frame Area
-    const photoX = 50;
-    const photoY = 95;
-    const photoW = 500;
-    const photoH = 380;
+      // Draw Photo inside arch slot
+      if (photoDataUrl) {
+        const userImg = new Image();
+        userImg.crossOrigin = 'anonymous';
+        userImg.onload = () => {
+          const imgRatio = userImg.width / userImg.height;
+          const frameRatio = photoW / photoH;
+          let sWidth = userImg.width;
+          let sHeight = userImg.height;
+          let sx = 0;
+          let sy = 0;
 
-    // Draw Photo Frame Background
-    ctx.fillStyle = '#e2ddd5';
-    ctx.fillRect(photoX, photoY, photoW, photoH);
+          if (imgRatio > frameRatio) {
+            sWidth = userImg.height * frameRatio;
+            sx = (userImg.width - sWidth) / 2;
+          } else {
+            sHeight = userImg.width / frameRatio;
+            sy = (userImg.height - sHeight) / 2;
+          }
 
-    if (photoDataUrl) {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      img.onload = () => {
-        const imgRatio = img.width / img.height;
-        const frameRatio = photoW / photoH;
-        let sWidth = img.width;
-        let sHeight = img.height;
-        let sx = 0;
-        let sy = 0;
-
-        if (imgRatio > frameRatio) {
-          sWidth = img.height * frameRatio;
-          sx = (img.width - sWidth) / 2;
-        } else {
-          sHeight = img.width / frameRatio;
-          sy = (img.height - sHeight) / 2;
-        }
-
-        ctx.drawImage(img, sx, sy, sWidth, sHeight, photoX, photoY, photoW, photoH);
-        drawOverlays();
-      };
-      img.src = photoDataUrl;
-    } else {
-      drawOverlays();
+          ctx.drawImage(userImg, sx, sy, sWidth, sHeight, photoX, photoY, photoW, photoH);
+          finishCanvas(frame);
+        };
+        userImg.onerror = () => finishCanvas(frame);
+        userImg.src = photoDataUrl;
+      } else {
+        // Fallback photo background if no photo data
+        ctx.fillStyle = '#e2ddd5';
+        ctx.fillRect(photoX, photoY, photoW, photoH);
+        finishCanvas(frame);
+      }
     }
 
-    function drawOverlays() {
-      // Photo frame border overlay
-      ctx.lineWidth = 6;
-      ctx.strokeStyle = '#ffffff';
-      ctx.strokeRect(photoX, photoY, photoW, photoH);
+    function finishCanvas(frame) {
+      // 3. Draw Frame Overlay
+      if (frame) {
+        ctx.drawImage(frame, 0, 0, width, height);
+      }
 
-      // 5. Character Mascot Stamp
-      const stampX = photoX + photoW - 100;
-      const stampY = photoY + photoH - 100;
+      // 4. Player Name Banner (Center Base above logo)
+      const displayName = playerName.trim() || 'Galle Fort Explorer';
+
+      const bannerW = 460;
+      const bannerH = 52;
+      const bannerX = (width - bannerW) / 2;
+      const bannerY = 960;
+
       ctx.save();
-      ctx.beginPath();
-      ctx.arc(stampX + 40, stampY + 40, 42, 0, Math.PI * 2);
-      ctx.fillStyle = '#ffffff';
-      ctx.fill();
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = '#ff9543';
-      ctx.stroke();
+      // Drop Shadow for Banner
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
+      ctx.shadowBlur = 12;
+      ctx.shadowOffsetY = 4;
 
-      ctx.font = '40px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(character === 'Mayura' ? '🦚' : '🐓', stampX + 40, stampY + 40);
+      ctx.fillStyle = '#2e86de';
+      ctx.beginPath();
+      ctx.roundRect(bannerX, bannerY, bannerW, bannerH, 14);
+      ctx.fill();
       ctx.restore();
 
-      // 6. Player Name Tag
-      const displayName = playerName.trim() || 'Galle Fort Explorer';
-      ctx.fillStyle = '#2e86de';
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.roundRect(photoX, photoY + photoH + 20, photoW, 50, 10);
-      ctx.fill();
+      ctx.roundRect(bannerX, bannerY, bannerW, bannerH, 14);
+      ctx.stroke();
 
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 22px "Space Grotesk", sans-serif';
+      ctx.font = 'bold 24px "Space Grotesk", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(`PLAYER: ${displayName.toUpperCase()}`, width / 2, photoY + photoH + 45);
+      ctx.fillText(`PLAYER: ${displayName.toUpperCase()}`, width / 2, bannerY + bannerH / 2);
 
-      // 7. Stats Grid Section
-      const statsY = photoY + photoH + 90;
+      // 5. Left Stone Pillar: Score Badge
+      drawPillarBadge(60, 480, 'TOTAL SCORE', `${score}`, '#2e86de');
 
-      // Score Badge Box
-      ctx.fillStyle = '#f4f1ec';
+      // 6. Left Stone Pillar Lower: Hero Mascot Stamp
+      drawMascotBadge(60, 600, character);
+
+      // 7. Right Stone Pillar: Levels Passed Badge
+      drawPillarBadge(860, 480, 'LEVELS PASSED', `${levelsPassed}`, '#4a8c3f');
+    }
+
+    function drawPillarBadge(x, y, label, val, color) {
+      const w = 160;
+      const h = 80;
+      ctx.save();
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+      ctx.shadowBlur = 10;
+      ctx.shadowOffsetY = 4;
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
       ctx.beginPath();
-      ctx.roundRect(50, statsY, 150, 70, 8);
+      ctx.roundRect(x, y, w, h, 14);
       ctx.fill();
-      ctx.strokeStyle = '#e2ddd5';
-      ctx.lineWidth = 1;
+
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3;
       ctx.stroke();
+      ctx.restore();
 
-      ctx.fillStyle = '#6b6860';
-      ctx.font = '11px "Inter", sans-serif';
-      ctx.fillText('TOTAL SCORE', 125, statsY + 22);
-      ctx.fillStyle = '#2e86de';
-      ctx.font = 'bold 26px "Space Grotesk", sans-serif';
-      ctx.fillText(`${score}`, 125, statsY + 52);
+      ctx.fillStyle = '#555555';
+      ctx.font = 'bold 11px "Inter", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(label, x + w / 2, y + 24);
 
-      // Levels Passed Box
-      ctx.fillStyle = '#f4f1ec';
+      ctx.fillStyle = color;
+      ctx.font = 'bold 28px "Space Grotesk", sans-serif';
+      ctx.fillText(val, x + w / 2, y + 58);
+    }
+
+    function drawMascotBadge(x, y, heroName) {
+      const w = 160;
+      const h = 80;
+      ctx.save();
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+      ctx.shadowBlur = 10;
+      ctx.shadowOffsetY = 4;
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
       ctx.beginPath();
-      ctx.roundRect(225, statsY, 150, 70, 8);
+      ctx.roundRect(x, y, w, h, 14);
       ctx.fill();
+
+      ctx.strokeStyle = '#ff9543';
+      ctx.lineWidth = 3;
       ctx.stroke();
+      ctx.restore();
 
-      ctx.fillStyle = '#6b6860';
-      ctx.font = '11px "Inter", sans-serif';
-      ctx.fillText('LEVELS PASSED', 300, statsY + 22);
-      ctx.fillStyle = '#4a8c3f';
-      ctx.font = 'bold 26px "Space Grotesk", sans-serif';
-      ctx.fillText(`${levelsPassed}`, 300, statsY + 52);
+      ctx.fillStyle = '#555555';
+      ctx.font = 'bold 11px "Inter", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('HERO', x + w / 2, y + 24);
 
-      // Character Box
-      ctx.fillStyle = '#f4f1ec';
-      ctx.beginPath();
-      ctx.roundRect(400, statsY, 150, 70, 8);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.fillStyle = '#6b6860';
-      ctx.font = '11px "Inter", sans-serif';
-      ctx.fillText('HERO', 475, statsY + 22);
       ctx.fillStyle = '#ff9543';
-      ctx.font = 'bold 22px "Space Grotesk", sans-serif';
-      ctx.fillText(`${character}`, 475, statsY + 52);
-
-      // 8. Footer Seal & Date
-      ctx.fillStyle = '#6b6860';
-      ctx.font = '13px "Inter", sans-serif';
-      const dateStr = new Date().toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-      });
-      ctx.fillText(`Issued by FeatherFly • ${dateStr}`, width / 2, height - 32);
+      ctx.font = 'bold 20px "Space Grotesk", sans-serif';
+      ctx.fillText(`${heroName === 'Mayura' ? '🦚' : '🐓'} ${heroName}`, x + w / 2, y + 56);
     }
   }, [photoDataUrl, score, levelsPassed, character, playerName, modalOpen]);
 
@@ -464,6 +485,12 @@ function ResultsContent() {
                 <div className={styles.cameraWrapper}>
                   <div className={styles.cameraBox}>
                     <video ref={videoRef} className={styles.videoElement} playsInline muted />
+                    {/* Live Frame Overlay for Face Alignment */}
+                    <img
+                      src={getImageUrl('/images/website photo frame.png')}
+                      alt="Photo Frame Overlay"
+                      className={styles.frameOverlay}
+                    />
                     {countdown !== null && <div className={styles.countdownOverlay}>{countdown}</div>}
                   </div>
 
@@ -531,6 +558,17 @@ function ResultsContent() {
                     <p className={styles.modalSubtitle}>
                       Your custom Galle Fort souvenir badge is ready! Save or share it to keep your memory.
                     </p>
+
+                    {/* Copyable Sample Social Post */}
+                    <div className={styles.samplePostBox} onClick={copySamplePost} title="Click to copy sample post">
+                      <div className={styles.samplePostHeader}>
+                        <span className={styles.samplePostTitle}>Sample Social Post</span>
+                        <span className={styles.copyPostChip}>
+                          <FontAwesomeIcon icon={copiedPost ? faCheck : faCopy} /> {copiedPost ? 'Copied!' : 'Copy Text'}
+                        </span>
+                      </div>
+                      <p className={styles.samplePostText}>{sampleText}</p>
+                    </div>
                   </div>
 
                   <div className={styles.actionsGroup}>
