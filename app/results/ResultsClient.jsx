@@ -17,6 +17,8 @@ import {
   faArrowLeft,
   faRotateRight,
   faXmark,
+  faShareNodes,
+  faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './page.module.css';
 
@@ -51,6 +53,7 @@ function ResultsContent() {
 
   // State for Player Name (pre-filled if passed, but editable)
   const [playerName, setPlayerName] = useState(rawPlayerName || '');
+  const [shareMsg, setShareMsg] = useState('');
 
   // Sync if rawPlayerName changes
   useEffect(() => {
@@ -163,6 +166,46 @@ function ResultsContent() {
     setModalOpen(false);
     if (activeTab === 'camera') {
       startCamera();
+    }
+  };
+
+  // Share Souvenir Badge image or link
+  const shareSouvenir = async () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    try {
+      if (canvas.toBlob) {
+        canvas.toBlob(async (blob) => {
+          if (!blob) return;
+          const file = new File([blob], `FeatherFly_Memory_${playerName.replace(/\s+/g, '_') || 'Explorer'}.png`, {
+            type: 'image/png',
+          });
+
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              title: 'FeatherFly Galle Fort Souvenir Badge',
+              text: `Check out my FeatherFly Galle Fort Memory Badge! Score: ${score}`,
+              files: [file],
+            });
+            return;
+          } else if (navigator.share) {
+            await navigator.share({
+              title: 'FeatherFly Galle Fort Souvenir Badge',
+              text: `Check out my FeatherFly Galle Fort Memory Badge! Score: ${score}`,
+              url: window.location.href,
+            });
+            return;
+          }
+
+          // Fallback to clipboard link
+          await navigator.clipboard.writeText(window.location.href);
+          setShareMsg('Link copied to clipboard!');
+          setTimeout(() => setShareMsg(''), 3000);
+        });
+      }
+    } catch (err) {
+      console.log('Share error/cancelled:', err);
     }
   };
 
@@ -358,133 +401,158 @@ function ResultsContent() {
           </Link>
         </div>
 
-        {/* Hero Header */}
-        <div className={styles.heroHeader}>
-          <div className={styles.badge}>
-            <FontAwesomeIcon icon={faCamera} /> Memory Photo Studio
-          </div>
-          <h1 className={styles.title}>
-            Capture Your <span className={styles.highlightText}>Game Memory</span>
-          </h1>
-          <p className={styles.subtitle}>
-            Take a photo with your camera or upload a picture to generate your custom FeatherFly Galle Fort souvenir badge!
-          </p>
-        </div>
-
-        {/* Photo Studio Card */}
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <div className={styles.cardIcon}>
-              <FontAwesomeIcon icon={faCamera} />
+        {/* Split Grid for Desktop: Left Info/Controls, Right Camera Viewport */}
+        <div className={styles.studioGrid}>
+          {/* Left Column: Hero Title & Input Controls */}
+          <div className={styles.leftCol}>
+            <div className={styles.heroHeader}>
+              <div className={styles.badge}>
+                <FontAwesomeIcon icon={faCamera} /> Memory Photo Studio
+              </div>
+              <h1 className={styles.title}>
+                Capture Your <span className={styles.highlightText}>Game Memory</span>
+              </h1>
+              <p className={styles.subtitle}>
+                Take a photo with your camera or upload a picture to generate your custom FeatherFly Galle Fort souvenir badge!
+              </p>
             </div>
-            <h2 className={styles.cardTitle}>Take or Submit Photo Memory</h2>
-          </div>
 
-          {/* Player Name Input */}
-          <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>Player Name (for Memory Badge):</label>
-            <input
-              type="text"
-              placeholder="e.g. Captain Aviator"
-              value={playerName}
-              onChange={(e) => setPlayerName(e.target.value)}
-              className={styles.textInput}
-              maxLength={25}
-            />
-          </div>
-
-          {/* Studio Mode Selector Tabs */}
-          <div className={styles.studioTabs}>
-            <button
-              className={`${styles.tabBtn} ${activeTab === 'camera' ? styles.tabBtnActive : ''}`}
-              onClick={() => setActiveTab('camera')}
-            >
-              <FontAwesomeIcon icon={faCamera} /> Take Picture
-            </button>
-            <button
-              className={`${styles.tabBtn} ${activeTab === 'upload' ? styles.tabBtnActive : ''}`}
-              onClick={() => setActiveTab('upload')}
-            >
-              <FontAwesomeIcon icon={faUpload} /> Submit / Upload Picture
-            </button>
-          </div>
-
-          {/* Tab 1: Live Webcam View */}
-          {activeTab === 'camera' && (
-            <div>
-              <div className={styles.cameraBox}>
-                <video ref={videoRef} className={styles.videoElement} playsInline muted />
-                {countdown !== null && <div className={styles.countdownOverlay}>{countdown}</div>}
+            <div className={styles.card}>
+              <div className={styles.cardHeader}>
+                <div className={styles.cardIcon}>
+                  <FontAwesomeIcon icon={faCamera} />
+                </div>
+                <h2 className={styles.cardTitle}>Take or Submit Photo Memory</h2>
               </div>
 
-              {cameraError ? (
-                <p style={{ color: '#d32f2f', fontSize: '0.9rem', marginBottom: '16px', textAlign: 'center' }}>
-                  {cameraError}
-                </p>
-              ) : null}
+              {/* Player Name Input */}
+              <div className={styles.inputGroup}>
+                <label className={styles.inputLabel}>Player Name (for Memory Badge):</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Captain Aviator"
+                  value={playerName}
+                  onChange={(e) => setPlayerName(e.target.value)}
+                  className={styles.textInput}
+                  maxLength={25}
+                />
+              </div>
 
-              <div className={styles.cameraControls}>
-                <button className={`${styles.actionBtn} ${styles.btnPrimary}`} onClick={triggerCapture}>
-                  <FontAwesomeIcon icon={faCamera} /> Snap Photo (3s)
+              {/* Studio Mode Selector Tabs */}
+              <div className={styles.studioTabs}>
+                <button
+                  className={`${styles.tabBtn} ${activeTab === 'camera' ? styles.tabBtnActive : ''}`}
+                  onClick={() => setActiveTab('camera')}
+                >
+                  <FontAwesomeIcon icon={faCamera} /> Take Picture
+                </button>
+                <button
+                  className={`${styles.tabBtn} ${activeTab === 'upload' ? styles.tabBtnActive : ''}`}
+                  onClick={() => setActiveTab('upload')}
+                >
+                  <FontAwesomeIcon icon={faUpload} /> Submit / Upload Picture
                 </button>
               </div>
             </div>
-          )}
+          </div>
 
-          {/* Tab 2: File Upload Zone */}
-          {activeTab === 'upload' && (
-            <div>
-              <div className={styles.uploadZone} onClick={() => fileInputRef.current?.click()}>
-                <div className={styles.uploadIcon}>
-                  <FontAwesomeIcon icon={faUpload} />
+          {/* Right Column: Viewport Window (Webcam / Upload dropzone) */}
+          <div className={styles.rightCol}>
+            <div className={styles.viewportCard}>
+              {/* Tab 1: Live Webcam View */}
+              {activeTab === 'camera' && (
+                <div className={styles.cameraWrapper}>
+                  <div className={styles.cameraBox}>
+                    <video ref={videoRef} className={styles.videoElement} playsInline muted />
+                    {countdown !== null && <div className={styles.countdownOverlay}>{countdown}</div>}
+                  </div>
+
+                  {cameraError ? (
+                    <p style={{ color: '#d32f2f', fontSize: '0.9rem', marginBottom: '12px', textAlign: 'center' }}>
+                      {cameraError}
+                    </p>
+                  ) : null}
+
+                  <div className={styles.cameraControls}>
+                    <button className={`${styles.actionBtn} ${styles.btnPrimary}`} onClick={triggerCapture}>
+                      <FontAwesomeIcon icon={faCamera} /> Snap Photo (3s)
+                    </button>
+                  </div>
                 </div>
-                <div className={styles.uploadTitle}>Click to choose a photo</div>
-                <div className={styles.uploadHint}>Supports PNG, JPG, WEBP (Max 10MB)</div>
-              </div>
+              )}
 
-              <input
-                type="file"
-                ref={fileInputRef}
-                accept="image/*"
-                className={styles.fileInput}
-                onChange={handleFileUpload}
-              />
+              {/* Tab 2: File Upload Zone */}
+              {activeTab === 'upload' && (
+                <div className={styles.uploadWrapper}>
+                  <div className={styles.uploadZone} onClick={() => fileInputRef.current?.click()}>
+                    <div className={styles.uploadIcon}>
+                      <FontAwesomeIcon icon={faUpload} />
+                    </div>
+                    <div className={styles.uploadTitle}>Click to choose a photo</div>
+                    <div className={styles.uploadHint}>Supports PNG, JPG, WEBP (Max 10MB)</div>
+                  </div>
+
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    accept="image/*"
+                    className={styles.fileInput}
+                    onChange={handleFileUpload}
+                  />
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
 
         {/* Modal Popup Preview for Memory Badge */}
         {modalOpen && (
           <div className={styles.modalOverlay} onClick={() => setModalOpen(false)}>
             <div className={styles.modalBox} onClick={(e) => e.stopPropagation()}>
-              <div className={styles.modalHeader}>
-                <div className={styles.modalTitle}>
-                  <FontAwesomeIcon icon={faFeather} style={{ color: '#2e86de' }} />
-                  Your Galle Fort Memory Badge Preview
+              <button className={styles.closeBtn} onClick={() => setModalOpen(false)} aria-label="Close modal">
+                <FontAwesomeIcon icon={faXmark} />
+              </button>
+
+              <div className={styles.modalGrid}>
+                {/* Modal Left: Image Output Canvas */}
+                <div className={styles.modalLeft}>
+                  <div className={styles.canvasWrapper}>
+                    <canvas ref={canvasRef} className={styles.souvenirCanvas} />
+                  </div>
                 </div>
-                <button className={styles.closeBtn} onClick={() => setModalOpen(false)}>
-                  <FontAwesomeIcon icon={faXmark} />
-                </button>
-              </div>
 
-              <div className={styles.canvasWrapper}>
-                <canvas ref={canvasRef} className={styles.souvenirCanvas} />
-              </div>
+                {/* Modal Right: Title & Action Buttons */}
+                <div className={styles.modalRight}>
+                  <div className={styles.modalHeaderInfo}>
+                    <div className={styles.modalTitle}>
+                      <FontAwesomeIcon icon={faFeather} style={{ color: '#2e86de' }} />
+                      Your Memory Badge
+                    </div>
+                    <p className={styles.modalSubtitle}>
+                      Your custom Galle Fort souvenir badge is ready! Save or share it to keep your memory.
+                    </p>
+                  </div>
 
-              <div className={styles.actionsGroup}>
-                <button className={`${styles.actionBtn} ${styles.btnSuccess}`} onClick={downloadSouvenir}>
-                  <FontAwesomeIcon icon={faDownload} /> Save Memory Photo (PNG)
-                </button>
+                  <div className={styles.actionsGroup}>
+                    <button className={`${styles.actionBtn} ${styles.btnSuccess}`} onClick={downloadSouvenir}>
+                      <FontAwesomeIcon icon={faDownload} /> Save Memory Photo (PNG)
+                    </button>
 
-                <button className={`${styles.actionBtn} ${styles.btnSecondary}`} onClick={retakePhoto}>
-                  <FontAwesomeIcon icon={faRotateRight} /> Retake Photo
-                </button>
+                    <button className={`${styles.actionBtn} ${styles.btnShare}`} onClick={shareSouvenir}>
+                      <FontAwesomeIcon icon={shareMsg ? faCheck : faShareNodes} /> {shareMsg || 'Share Badge'}
+                    </button>
 
-                <a href="https://miusoftgames.github.io/FeatherFly/game/">
-                  <button className={`${styles.actionBtn} ${styles.btnPrimary}`}>
-                    <FontAwesomeIcon icon={faGamepad} /> End Play Game
-                  </button>
-                </a>
+                    <button className={`${styles.actionBtn} ${styles.btnSecondary}`} onClick={retakePhoto}>
+                      <FontAwesomeIcon icon={faRotateRight} /> Retake Photo
+                    </button>
+
+                    <a href="https://miusoftgames.github.io/FeatherFly/game/" className={styles.fullWidthLink}>
+                      <button className={`${styles.actionBtn} ${styles.btnPrimary}`}>
+                        <FontAwesomeIcon icon={faGamepad} /> Play again
+                      </button>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
