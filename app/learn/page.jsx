@@ -21,7 +21,7 @@ export default function LearnIndex() {
         <Image src={getImageUrl('/images/learn/journal-book.png')} alt="" width={144} height={192} className={styles.journalBook} unoptimized priority />
         <div className={styles.journalIntro}>
           <h1 className={styles.title}>Your <span className={styles.accent}>Fort Journal</span></h1>
-          <p className={styles.body}>Explore Galle’s creative spaces, streets and puzzle stories, in the same order as your Fort Journal.</p>
+          <p className={styles.body}>Explore alongside your in-game Fort Journal. Find more details about Galle’s creative spaces, historic streets, and the stories behind each puzzle.</p>
           <nav className={styles.groupNav} aria-label="Journal sections">
             {journalGroups.map(group => <a key={group.id} href={`#${group.id}`}>{group.name} ↓</a>)}
           </nav>

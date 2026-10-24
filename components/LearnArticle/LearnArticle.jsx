@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import BackToTop from '@/components/BackToTop/BackToTop';
@@ -30,7 +32,7 @@ export default function LearnArticle({ entry }) {
     <Header />
     <main className={styles.page}>
       <section className={styles.section}>
-        <div className={`container ${styles.articleContainer}`}><Link href="/learn/" className={styles.backLink}>← Explore the Fort Journal</Link></div>
+        <div className={`container ${styles.articleContainer}`}><Link href="/learn/" className={styles.backLink}><FontAwesomeIcon icon={faArrowLeft} /> Back to Learn</Link></div>
         <div className={`container ${styles.articleContainer} ${styles.layout}`}>
           <figure className={styles.imageWrap}>
             <Image src={getImageUrl(photo?.path || entry.image)} alt={photo ? `${entry.name} — reference photograph` : (entry.imageAlt || `${entry.name} map in FeatherFly`)} width={photo?.width || 700} height={photo?.height || 550} className={styles.img} unoptimized priority />
