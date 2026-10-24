@@ -1,0 +1,92 @@
+{
+  "all-saints": {
+    "width": 1000,
+    "author": "A.Savin",
+    "height": 625,
+    "path": "/images/learn/heritage/all-saints.jpg",
+    "title": "SL_Galle_Fort_asv2020-01_img17.jpg",
+    "licenseUrl": "http://artlibre.org/licence/lal/en",
+    "license": "FAL",
+    "source": "https://commons.wikimedia.org/wiki/File:SL_Galle_Fort_asv2020-01_img17.jpg"
+  },
+  "harbour": {
+    "width": 1140,
+    "author": "Chamal N",
+    "height": 485,
+    "path": "/images/learn/heritage/harbour.jpg",
+    "title": "Galle_Harbour.JPG",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Galle_Harbour.JPG"
+  },
+  "amangalla": {
+    "width": 1000,
+    "author": "A.Savin",
+    "height": 800,
+    "path": "/images/learn/heritage/amangalla.jpg",
+    "title": "SL_Galle_Fort_asv2020-01_img14.jpg",
+    "licenseUrl": "http://artlibre.org/licence/lal/en",
+    "license": "FAL",
+    "source": "https://commons.wikimedia.org/wiki/File:SL_Galle_Fort_asv2020-01_img14.jpg"
+  },
+  "hospital": {
+    "width": 1000,
+    "author": "Dan Lundberg",
+    "height": 750,
+    "path": "/images/learn/heritage/hospital.jpg",
+    "title": "20160129_Sri_Lanka_4229_Galle_sRGB_(25139038324).jpg",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:20160129_Sri_Lanka_4229_Galle_sRGB_(25139038324).jpg"
+  },
+  "dutch-church": {
+    "width": 1000,
+    "author": "A.Savin",
+    "height": 1000,
+    "path": "/images/learn/heritage/dutch-church.jpg",
+    "title": "SL_Galle_Fort_asv2020-01_img15.jpg",
+    "licenseUrl": "http://artlibre.org/licence/lal/en",
+    "license": "FAL",
+    "source": "https://commons.wikimedia.org/wiki/File:SL_Galle_Fort_asv2020-01_img15.jpg"
+  },
+  "fort": {
+    "width": 1000,
+    "author": "Rovin Shanila",
+    "height": 749,
+    "path": "/images/learn/heritage/fort.jpg",
+    "title": "Galle_Fort.jpg",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Galle_Fort.jpg"
+  },
+  "lighthouse": {
+    "width": 1000,
+    "author": "A.Savin",
+    "height": 800,
+    "path": "/images/learn/heritage/lighthouse.jpg",
+    "title": "SL_Galle_Fort_asv2020-01_img24.jpg",
+    "licenseUrl": "http://artlibre.org/licence/lal/en",
+    "license": "FAL",
+    "source": "https://commons.wikimedia.org/wiki/File:SL_Galle_Fort_asv2020-01_img24.jpg"
+  },
+  "museum": {
+    "width": 1000,
+    "author": "Ji-Elle",
+    "height": 750,
+    "path": "/images/learn/heritage/museum.jpg",
+    "title": "Galle-Maritime_Archaeology_Museum_(7).jpg",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Galle-Maritime_Archaeology_Museum_(7).jpg"
+  },
+  "clock-tower": {
+    "width": 1000,
+    "author": "Ji-Elle",
+    "height": 1333,
+    "path": "/images/learn/heritage/clock-tower.jpg",
+    "title": "Galle-Clock_Tower_(1).jpg",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Galle-Clock_Tower_(1).jpg"
+  }
+}

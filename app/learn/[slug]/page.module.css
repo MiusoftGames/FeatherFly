@@ -1,17 +1,22 @@
 .page {
+    --article-section-space: 48px;
     min-height: 100vh;
+}
+
+.articleContainer {
+    max-width: 1120px;
 }
 
 /* Hero / Introduction */
 .section {
     background: var(--color-stone-pale);
-    padding: var(--space-32) 0;
+    padding: calc(var(--header-height) + 32px) 0 var(--article-section-space);
 }
 
 .layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-16);
+    gap: var(--space-12);
     align-items: center;
 }
 
@@ -126,12 +131,12 @@
 /* History */
 .historySection {
     background: var(--color-white);
-    padding: var(--space-20) 0;
+    padding: var(--article-section-space) 0 var(--space-16);
 }
 
 .historyContent {
-    max-width: 760px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -148,6 +153,7 @@
 }
 
 .historyBody {
+    max-width: 72ch;
     font-size: 1rem;
     line-height: 1.8;
     color: var(--color-ink-soft);
@@ -172,6 +178,8 @@
 
 /* Responsive */
 @media (max-width: 900px) {
+    .page { --article-section-space: 32px; }
+
     .layout {
         grid-template-columns: 1fr;
         gap: var(--space-10);
@@ -190,4 +198,66 @@
     .factsGrid {
         grid-template-columns: 1fr;
     }
+}
+.imageWrap { flex-direction: column; gap: 16px; margin: 0; min-width: 0; }
+.section .backLink { margin: 0 0 32px; }
+.caption { max-width: 520px; font-size: .75rem; line-height: 1.65; color: var(--color-ink-soft); overflow-wrap: anywhere; }
+.caption a, .sources a { color: #2769a8; text-decoration: underline; text-underline-offset: 3px; }
+.subheading { font-family: var(--font-heading); font-size: 1.4rem; margin-top: 16px; }
+.note { max-width: 72ch; padding: 24px; border-left: 3px solid var(--color-accent); background: var(--color-stone-pale); border-radius: 0 12px 12px 0; line-height: 1.75; }
+.note p { margin-top: 8px; }
+
+.sourcesHeading { font-family: var(--font-heading); font-size: 1rem; margin-top: 16px; }
+.sources { list-style: disc outside; padding-left: 20px; font-size: .85rem; line-height: 1.7; }
+.catalog { padding: 140px 0 80px; background: var(--color-off-white); }
+.journalHeading { display: grid; grid-template-columns: 144px minmax(0, 1fr); align-items: center; gap: 28px; margin: 24px 0 48px; }
+.journalBook { display: block; width: 100%; height: auto; }
+.journalIntro { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; min-width: 0; }
+.journalIntro > p { max-width: 720px; }
+.journalIntro .groupNav { margin: 0; }
+.journalHeading .title { min-width: 0; }
+@media(max-width: 900px) { .journalHeading { grid-template-columns: 96px minmax(0, 1fr); gap: 20px; } }
+@media(max-width: 600px) { .journalHeading { grid-template-columns: 56px minmax(0, 1fr); gap: 16px; align-items: start; } .journalIntro { gap: 16px; } }
+.catalog > div > p { max-width: 720px; }
+.groupNav { display: flex; gap: 10px; flex-wrap: wrap; margin: 32px 0 48px; }
+.groupNav a { display: inline-flex; align-items: center; padding: 9px 14px; border: 1px solid var(--color-border); border-radius: 10px; background: #f5f4f1; color: var(--color-ink-soft); font-size: .85rem; font-weight: 500; line-height: 1.4; text-decoration: none; transition: background 150ms, border-color 150ms, color 150ms; }
+.groupNav a:hover { background: #eeede8; border-color: #c8c4bc; color: var(--color-ink); }
+.catalogSection { margin-top: 56px; scroll-margin-top: 100px; }
+.cardGrid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+.entryCard { overflow: hidden; border: 1px solid var(--color-border); border-radius: 12px; background: white; display: flex; flex-direction: column; transition: transform 150ms, box-shadow 150ms; }
+.entryCard:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.entryCard:focus-visible, .groupNav a:focus-visible, .backLink:focus-visible { outline: 3px solid #2769a8; outline-offset: 4px; }
+.cardImage { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: var(--color-stone-pale); }
+@media(max-width: 1000px) { .cardGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media(max-width: 760px) { .cardGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media(max-width: 480px) { .cardGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } .catalog { padding-top: 110px; } }
+
+.cardTitle { padding: 12px; font-family: var(--font-heading); font-size: .88rem; font-weight: 600; line-height: 1.45; text-align: center; }
+.locationSection { width: 100%; min-width: 0; display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+.locationSection .subheading { margin-top: 0; }
+.locationMap { display: block; width: 100%; height: 380px; border: 1px solid var(--color-border); border-radius: 16px; background: var(--color-stone-pale); }
+.mapLinks { display: flex; flex-wrap: wrap; gap: 12px 24px; font-size: .88rem; line-height: 1.7; }
+.mapLinks a { color: #2769a8; text-decoration: underline; text-underline-offset: 3px; }
+@media(max-width: 480px) { .locationMap { height: 300px; } }
+
+.catalogSection .historyTitle { font-size: clamp(1.5rem, 2.5vw, 2rem); }
+
+.gamePromo { width: 100%; display: grid; grid-template-columns: 220px minmax(0, 1fr); align-items: center; gap: 32px; padding: 32px; margin: 16px 0; background: #f3f8fd; border: 1px solid #dce8f1; border-radius: 24px; scroll-margin-top: 100px; }
+.puzzlePreview { display: block; width: auto; max-width: 100%; height: auto; max-height: 240px; justify-self: center; object-fit: contain; border-radius: 16px; box-shadow: var(--shadow-md); }
+.promoContent { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.promoTitle { font-family: var(--font-heading); font-size: clamp(1.25rem, 2.3vw, 1.75rem); line-height: 1.25; color: var(--color-ink); }
+.promoButton { display: inline-flex; align-items: center; justify-content: center; padding: 12px 22px; border: 0; border-radius: var(--radius-full); background: var(--color-gold-dark); color: white; font-family: var(--font-heading); font-size: .9rem; font-weight: 700; cursor: pointer; transition: transform 150ms, background 150ms; }
+.promoButton:hover { background: #e77b29; transform: translateY(-2px); }
+.promoButton:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
+@media(max-width: 760px) { .gamePromo { grid-template-columns: 160px minmax(0, 1fr); gap: 24px; padding: 24px; } }
+@media(max-width: 560px) { .gamePromo { grid-template-columns: 1fr; } .puzzlePreview { max-width: 180px; } }
+
+@media (max-width: 600px) {
+  .journalHeading { grid-template-columns: 48px minmax(0, 1fr); align-items: center; gap: 18px 14px; margin: 20px 0 32px; }
+  .journalBook { width: 48px; grid-column: 1; grid-row: 1; }
+  .journalIntro { display: contents; }
+  .journalHeading .title { grid-column: 2; grid-row: 1; font-size: clamp(1.5rem, 6.2vw, 1.875rem); line-height: 1.2; }
+  .journalIntro > p { grid-column: 1 / -1; font-size: .94rem; line-height: 1.7; }
+  .journalIntro .groupNav { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: 100%; margin: 2px 0 0; }
+  .journalIntro .groupNav a { justify-content: center; min-height: 44px; padding: 8px; font-size: .75rem; text-align: center; }
 }

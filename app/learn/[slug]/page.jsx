@@ -1,157 +1,16 @@
-import Image from "next/image";
-import { notFound } from "next/navigation";
-import { learnData } from "@/lib/learnData";
-import { getImageUrl } from "@/lib/config";
-import styles from "./page.module.css";
-
-import Header from "@/components/Header/Header";
-import BackToTop from "@/components/BackToTop/BackToTop";
-import Footer from "@/components/Footer/Footer";
-
-export function generateStaticParams() {
-    return Object.keys(learnData).map((slug) => ({
-        slug,
-    }));
-}
-
+import { notFound } from 'next/navigation';
+import { learnData } from '@/lib/learnData';
+import { getLearnEntry } from '@/lib/learnCatalog';
+import LearnArticle, { learnMetadata } from '@/components/LearnArticle/LearnArticle';
+export const dynamicParams = false;
+export function generateStaticParams() { return Object.keys(learnData).map(slug => ({ slug })); }
 export async function generateMetadata({ params }) {
-    const { slug } = await params;
-    const street = learnData[slug];
-
-    if (!street) {
-        return {
-            title: "Street Not Found",
-        };
-    }
-
-    const title = `${street.name} | Explore Galle Fort Heritage`;
-    const description = street.description;
-    const canonicalUrl = `/learn/${slug}`;
-    const fullImageUrl = `https://miusoftgames.github.io${getImageUrl(street.image)}`;
-
-    return {
-        title,
-        description,
-        keywords: [street.name, 'Galle Fort', 'Galle Fort Streets', 'Sri Lanka History', 'FeatherFly Learn', street.tag],
-        alternates: {
-            canonical: canonicalUrl,
-        },
-        openGraph: {
-            title: `${title} | FeatherFly`,
-            description,
-            url: `https://miusoftgames.github.io/FeatherFly${canonicalUrl}`,
-            images: [
-                {
-                    url: fullImageUrl,
-                    alt: `${street.name} in Galle Fort, Sri Lanka`,
-                },
-            ],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: `${title} | FeatherFly`,
-            description,
-            images: [fullImageUrl],
-        },
-    };
+  const { slug } = await params;
+  return learnMetadata(getLearnEntry(slug), slug);
 }
-
 export default async function LearnPage({ params }) {
-    const { slug } = await params;
-    const street = learnData[slug];
-
-    if (!street) {
-        notFound();
-    }
-
-    return (
-        <>
-            <Header />
-
-            <main className={styles.page}>
-                {/* Street Introduction */}
-                <section className={styles.section}>
-                    <div className={`container ${styles.layout}`}>
-
-                        <div className={styles.imageWrap}>
-                            <Image
-                                src={getImageUrl(street.image)}
-                                alt={`${street.name} in Galle Fort`}
-                                width={700}
-                                height={550}
-                                className={styles.img}
-                                unoptimized
-                            />
-                        </div>
-
-                        <div className={styles.content}>
-                            <span className={styles.tag}>
-                                {street.tag}
-                            </span>
-
-                            <h1 className={styles.title}>
-                                <span className={styles.accent}>
-                                    {street.accentTitle}
-                                </span>{" "}
-                                {street.titleEnd}
-                            </h1>
-
-                            <p className={styles.body}>
-                                {street.description}
-                            </p>
-
-                            <div className={styles.factsGrid}>
-                                {street.facts.map((fact) => (
-                                    <div
-                                        className={styles.factCard}
-                                        key={fact.label}
-                                    >
-                                        <span className={styles.factIcon}>
-                                            {fact.icon}
-                                        </span>
-
-                                        <div>
-                                            <span className={styles.factLabel}>
-                                                {fact.label}
-                                            </span>
-
-                                            <span className={styles.factValue}>
-                                                {fact.value}
-                                            </span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
-                {/* History */}
-                <section className={styles.historySection}>
-                    <div className="container">
-                        <div className={styles.historyContent}>
-                            <span className={styles.tag}>
-                                Discover the History
-                            </span>
-
-                            <h2 className={styles.historyTitle}>
-                                About{" "}
-                                <span className={styles.accent}>
-                                    {street.name}
-                                </span>
-                            </h2>
-
-                            <p className={styles.historyBody}>
-                                {street.history}
-                            </p>
-                        </div>
-                    </div>
-                </section>
-            </main>
-
-            <Footer />
-            <BackToTop />
-        </>
-    );
+  const { slug } = await params;
+  const entry = getLearnEntry(slug);
+  if (!entry) notFound();
+  return <LearnArticle entry={entry} />;
 }

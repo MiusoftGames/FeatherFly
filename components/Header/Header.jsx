@@ -10,7 +10,7 @@ import PlayButton from '../PlayButton/PlayButton';
 
 const navLinks = [
   { label: 'Gameplay', hash: '#gameplay' },
-  { label: 'Learn', hash: '#educational' },
+  { label: 'Learn', hash: '/learn/' },
   { label: 'About Fort', hash: '#about-fort' },
   { label: 'Features', hash: '#features' },
 ];
@@ -47,7 +47,7 @@ export default function Header() {
         {/* Desktop nav */}
         <nav className={styles.nav}>
           {navLinks.map((link) => {
-            const href = isHome ? link.hash : `/${link.hash}`;
+            const href = link.hash.startsWith('/') ? link.hash : isHome ? link.hash : `/${link.hash}`;
             return (
               <Link key={link.hash} href={href} className={styles.navLink}>
                 {link.label}
@@ -75,7 +75,7 @@ export default function Header() {
       {/* Mobile drawer */}
       <div className={`${styles.drawer} ${menuOpen ? styles.drawerOpen : ''}`}>
         {navLinks.map((link) => {
-          const href = isHome ? link.hash : `/${link.hash}`;
+          const href = link.hash.startsWith('/') ? link.hash : isHome ? link.hash : `/${link.hash}`;
           return (
             <Link key={link.hash} href={href} className={styles.drawerLink} onClick={closeMenu}>
               {link.label}

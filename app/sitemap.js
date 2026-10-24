@@ -1,4 +1,4 @@
-import { learnData } from '@/lib/learnData';
+import { learnCatalog } from '@/lib/learnCatalog';
 
 export const dynamic = 'force-static';
 
@@ -26,12 +26,12 @@ export default async function sitemap() {
     },
   ];
 
-  const learnRoutes = Object.keys(learnData).map((slug) => ({
-    url: `${baseUrl}/learn/${slug}`,
+  const learnRoutes = Object.keys(learnCatalog).map((slug) => ({
+    url: `${baseUrl}/learn/${slug}/`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...learnRoutes];
+  return [...staticRoutes, { url: `${baseUrl}/learn/`, changeFrequency: 'monthly', priority: 0.8 }, ...learnRoutes];
 }
