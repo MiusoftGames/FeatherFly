@@ -1,7 +1,6 @@
 import styles from './CTA.module.css';
-import { GAME_LINK, GAME_LINK_ANDROID } from '@/lib/config';
+import { GAME_LINK_ANDROID } from '@/lib/config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { faGooglePlay } from '@fortawesome/free-brands-svg-icons';
 import PlayButton from '../PlayButton/PlayButton';
 
@@ -29,9 +28,9 @@ export default function CTA() {
             <PlayButton className={styles.btnPrimary}>
                &ensp;Play in Browser
             </PlayButton>
-            {/* <a href={GAME_LINK_ANDROID} target="_blank" className={styles.btnSecondary}>
-              <FontAwesomeIcon icon={faGooglePlay} /> &ensp;Google Play Store
-            </a> */}
+            <a href={GAME_LINK_ANDROID} target="_blank" rel="noopener noreferrer" className={styles.btnSecondary}>
+              <FontAwesomeIcon icon={faGooglePlay} /> &ensp;Google Play
+            </a>
           </div>
 
           <p className={styles.fine}>
