@@ -28,7 +28,7 @@ export default function Footer() {
               <span className={styles.logoText}>FeatherFly</span>
             </Link>
             <p className={styles.tagline}>
-              A fun & educational flappy-style adventure exploring the rich history of Galle Fort, Sri Lanka.
+              A fun and educational adventure through the rich history of Galle Fort, Sri Lanka.
             </p>
           </div>
 

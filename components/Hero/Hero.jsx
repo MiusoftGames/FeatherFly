@@ -26,7 +26,7 @@ export default function Hero() {
 
           <p className={styles.subtext}>
             Join Kukula and Mayura on an adventure through Galle Fort.
-            Inspired by Flappy Bird and Braid, it brings together fun gameplay and educational discovery.
+            Play your way through its historic streets and discover the stories behind them.
           </p>
 
           <div className={styles.buttons}>
